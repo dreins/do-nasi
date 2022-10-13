@@ -33,8 +33,9 @@ Perancangan aplikasi ini ditujukan untuk membantu masyarakat dalam skala Indones
    B)Page donasi
        - ketika pemberi udah ngeklik salah satu saluran donasi yang dipilih, dia ke redirect ke sini buat nginput donasi dia
 5. Artikel 
+   Berisi artikel - artikel yang berkaitan dengan tingkat kelaparan dunia
 6. Q&A
-
+   Berisi pertanyaan - pertanyaan dari pemberi dan jawaban - jawaban dari penyalur
 #### 5) Role atau peran pengguna beserta deskripsinya 
 - Donatur
 Pengguna yang mendaftarkan dirinya sebagai donatur. Donatur dapat memberikan donasi berupa makanan atau uang tunai. 
