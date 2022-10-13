@@ -1,14 +1,12 @@
 # PBP Proyek Tengah Semester
 
-# do-nasi
-An application aims to create a better future for the world, specifically to end world's hunger
-
 ### 1) Nama-nama anggota kelompok 
-```- Davyn Reinhard Santoso - 2106751083
-   - Fresty Tania Stearine - 2106750742
-   - Debby Trinita - 2106701072
-   - Dave Matthew Peter Lumban Tobing - 2106700870
-   - Monica Oktaviona - 2106701210
+```
+1. Dave Matthew Peter Lumban Tobing - 2106700870
+2. Davyn Reinhard Santoso - 2106751083
+3. Debby Trinita - 2106701072
+4. Fresty Tania Stearine - 2106750742
+5. Monica Oktaviona - 2106701210
 ```
 
 ### 2) Tautan aplikasi Heroku
@@ -28,11 +26,12 @@ Perancangan aplikasi ini ditujukan untuk membantu masyarakat dalam skala Indones
    B) Register penyalur/organisasi dan donatur
    C) Login dan Logout
 2. Page Profile: edit dan liat profile pengguna 
-3.  A) Page Overview donasi:
-   - tampilan untuk penyalur: cuma bisa liat yang donasi yg dia buka
-  - tampilan untuk pemberi: bisa ngeliat SEMUA donasi, baik yang udah dia donasiin maupun yang belum
+3. A) Page Overview donasi:
+      - tampilan untuk penyalur: penyalur dapat melihat semua donasi yang tersedia
+      - tampilan untuk pemberi: pemberi dapat melihat semua donasi yang telah ia berikan beserta dengan daftar penyalur dan jumlahnya
+      
    B)Page donasi
-  - ketika pemberi udah ngeklik salah satu saluran donasi yang dipilih, dia ke redirect ke sini buat nginput donasi dia
+       - ketika pemberi udah ngeklik salah satu saluran donasi yang dipilih, dia ke redirect ke sini buat nginput donasi dia
 5. Artikel 
 6. Q&A
 
