@@ -1,62 +1,43 @@
-# Template Proyek Django PBP
+# PBP Proyek Tengah Semester
 
-Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu Komputer Universitas Indonesia, Semester Ganjil 2022/2023
+# do-nasi
+An application aims to create a better future for the world, specifically to end world's hunger
 
-*Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
+### 1) Nama-nama anggota kelompok 
+```- Davyn Reinhard Santoso - 2106751083
+   - Fresty Tania Stearine - 2106750742
+   - Debby Trinita - 2106701072
+   - Dave Matthew Peter Lumban Tobing - 2106700870
+   - Monica Oktaviona - 2106701210
+```
 
-## Pendahuluan
+### 2) Tautan aplikasi Heroku
+#### 🔗 Links
+[Link deploy](https://do-nasi.herokuapp.com/)
 
-Repositori ini merupakan sebuah template yang dirancang untuk membantu mahasiswa yang sedang mengambil mata kuliah Pemrograman Berbasis Platform (CSGE602022) mengetahui struktur sebuah proyek aplikasi Django serta file dan konfigurasi yang penting dalam berjalannya aplikasi. Kamu dapat dengan bebas menyalin isi dari repositori ini atau memanfaatkan repositori ini sebagai pembelajaran sekaligus awalan dalam membuat sebuah proyek Django.
+### 3) Cerita aplikasi yang diajukan serta manfaatnya
+Do-nasi adalah aplikasi yang memberikan ruang untuk saling berbagi dan menyalurkan makanan atau uang untuk masyarakat yang membutuhkan dalam rangka memerangi masalah kelaparan di dunia.
 
-## Cara Menggunakan
+Perancangan aplikasi ini ditujukan untuk membantu masyarakat dalam skala Indonesia dan global sehingga kita dapat mengurangi angka kelaparan global secara bersama - sama. Nantinya, pengguna dapat mendaftarkan diri sebagai pemberi donasi dan penyalur donasi (sukarelawan). Pemberi donasi dapat menawarkan bantuan melalui aplikasi dan penyalur akan menerima bantuan tersebut untuk disalurkan kepada orang - orang yang membutuhkan.
 
-Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nantinya akan kamu modifikasi:
+### 4) Daftar modul yang akan diimplementasikan
+1. A) Landing page
+    - penjelasan pentingnya pangan
+    - penjelasan web kita
+    - button untuk register as penyalur dan register as donatur
+   B) Register penyalur/organisasi dan donatur
+   C) Login dan Logout
+2. Page Profile: edit dan liat profile pengguna 
+3.  A) Page Overview donasi:
+   - tampilan untuk penyalur: cuma bisa liat yang donasi yg dia buka
+  - tampilan untuk pemberi: bisa ngeliat SEMUA donasi, baik yang udah dia donasiin maupun yang belum
+   B)Page donasi
+  - ketika pemberi udah ngeklik salah satu saluran donasi yang dipilih, dia ke redirect ke sini buat nginput donasi dia
+5. Artikel 
+6. Q&A
 
-1. Buka laman GitHub repositori templat kode, lalu klik tombol "**Use this template**"
-   untuk membuat salinan repositori ke dalam akun GitHub milikmu.
-2. Buka laman GitHub repositori yang dibuat dari templat, lalu gunakan perintah
-   `git clone` untuk menyalin repositorinya ke suatu lokasi di dalam sistem
-   berkas (_filesystem_) komputermu:
-
-   ```shell
-   git clone <URL ke repositori di GitHub> <path ke suatu lokasi di filesystem>
-   ```
-3. Masuk ke dalam repositori yang sudah di-_clone_ dan jalankan perintah berikut
-   untuk menyalakan _virtual environment_:
-
-   ```shell
-   python -m venv env
-   ```
-4. Nyalakan environment dengan perintah berikut:
-
-   ```shell
-   # Windows
-   .\env\Scripts\activate
-   # Linux/Unix, e.g. Ubuntu, MacOS
-   source env/bin/activate
-   ```
-5. Install dependencies yang dibutuhkan untuk menjalankan aplikasi dengan perintah berikut:
-
-   ```shell
-   pip install -r requirements.txt
-   ```
-
-6. Jalankan aplikasi Django menggunakan server pengembangan yang berjalan secara
-   lokal:
-
-   ```shell
-   python manage.py runserver
-   ```
-7. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
-
-## Contoh Deployment 
-
-Pada template ini, deployment dilakukan dengan memanfaatkan GitHub Actions sebagai _runner_ dan Heroku sebagai platform Hosting aplikasi. 
-
-Untuk melakukan deployment, kamu dapat melihat instruksi yang ada pada [Tutorial 0](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tutorial/tutorial-0).
-
-Untuk contoh aplikasi Django yang sudah di deploy, dapat kamu akses di [https://django-pbp-template.herokuapp.com/](https://django-pbp-template.herokuapp.com/)
-
-## Credits
-
-Template ini dibuat berdasarkan [PBP Ganjil 2021](https://gitlab.com/PBP-2021/pbp-lab) yang ditulis oleh Tim Pengajar Pemrograman Berbasis Platform 2021 ([@prakashdivyy](https://gitlab.com/prakashdivyy)) dan [django-template-heroku](https://github.com/laymonage/django-template-heroku) yang ditulis oleh [@laymonage, et al.](https://github.com/laymonage). Template ini dirancang sedemikian rupa sehingga mahasiswa dapat menjadikan template ini sebagai awalan serta acuan dalam mengerjakan tugas maupun dalam berkarya.
+#### 5) Role atau peran pengguna beserta deskripsinya 
+- Donatur
+Pengguna yang mendaftarkan dirinya sebagai donatur. Donatur dapat memberikan donasi berupa makanan atau uang tunai. 
+- Penyalur
+Pengguna yang mendaftarkan dirinya sebagai penyalur akan dapat menambahkan donasi baru untuk nantinya ditampilkan di halaman review
