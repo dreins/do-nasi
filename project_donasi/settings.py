@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+from telnetlib import AUTHENTICATION
 import dj_database_url
 from pathlib import Path
 
@@ -30,6 +31,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+AUTH_USER_MODEL = "landing_page.Pengguna"
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'landing_page.backends.CaseInsensitiveModelBackend'
+)
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'landing_page',
 ]
 
 MIDDLEWARE = [
