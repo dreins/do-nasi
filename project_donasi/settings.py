@@ -30,6 +30,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+AUTH_USER_MODEL = "landing_page.Pengguna"
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'landing_page.backends.CaseInsensitiveModelBackend'
+)
 
 # Application definition
 
@@ -40,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'landing_page'
 ]
 
 MIDDLEWARE = [
