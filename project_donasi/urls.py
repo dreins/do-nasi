@@ -19,6 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landing_page.urls')),
+    path('questions/', include('questions.urls')),
 ]
 
-# TODO: Implement Routings Here
