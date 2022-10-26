@@ -10,5 +10,4 @@ class HarapanDonatur(models.Model):
     )
     created_at = models.DateField(auto_now=True)
     text = models.TextField()
-    harapan_image = models.ImageField(upload_to='harapan_image', default=None)
     likes = models.IntegerField(default=0)
