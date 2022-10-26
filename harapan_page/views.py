@@ -8,13 +8,12 @@ from django.http import JsonResponse
 # Create your views here.
 # @login_required(login_url='/todolist/login/')
 
-@login_required(login_url='/todolist/login/')
 @csrf_exempt
 def show_harapan(request):
     data_harapan = HarapanDonatur.objects.all()
     context = {
-        'username': request.COOKIES['username'],
-        'last_login': request.COOKIES['last_login'],
+        # 'username': request.COOKIES['username'],
+        # 'last_login': request.COOKIES['last_login'],
         'mytodo': data_harapan,
     }
     return render(request, "harapan_page.html", context)
