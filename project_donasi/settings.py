@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'landing_page',
+<<<<<<< HEAD
     'harapan_page'
+=======
+>>>>>>> 223347485687e587a9521b325edc5b24200c2ec7
 ]
 
 MIDDLEWARE = [
