@@ -15,7 +15,6 @@ def show_harapan(request):
     data_harapan = HarapanDonatur.objects.all()
     context = {
         # 'username': request.COOKIES['username'],
-        # 'last_login': request.COOKIES['last_login'],
         'mytodo': data_harapan,
     }
     return render(request, "harapan_page.html", context)

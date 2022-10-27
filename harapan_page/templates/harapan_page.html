@@ -1,11 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+    integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+    integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
 <style>
+    body {
+        font-family: 'Poppins';
+    }
+
+    .carousel-caption {
+        top: 32%;
+    }
+
     .card,
     h1 {
-        margin: 20px;
+        margin: 40px;
     }
 
     .card:hover {
@@ -14,14 +31,7 @@
     }
 
     .carousel-inner {
-        height: 200px;
-    }
-
-    .item,
-    img {
-        height: 100% !important;
-        width: 100% !important;
-
+        height: 400px;
     }
 </style>
 
@@ -34,27 +44,27 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://images.immediate.co.uk/production/volatile/sites/7/2013/12/GettyImages-585857170-b7cecf8.jpg"
+                <img src="https://www.london.ac.uk/sites/default/files/styles/max_1300x1300/public/2018-07/nelson-lc-mandela-day.jpg?itok=gPOR6fdZ"
                     class="d-block w-100" alt="Second Slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h6>“Overcoming poverty is not a task of charity, it is an act of justice.”</h6>
+                    <h3>Nelson Mandela</h3>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1557392586/gbsflphemfgavkf4y3il.jpg"
                     class="d-block w-100" alt="First Slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Mahatma Gandhi</h5>
-                    <p>Life as if you were to die tomorrow. Learn as if you were life forever</p>
+                    <h3>Mahatma Gandhi</h3>
+                    <p>“Life as if you were to die tomorrow. Learn as if you were life forever.“</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2020/09/06/304502790.jpg"
+                <img src="https://imgsrv2.voi.id/MAzUUjSgcSefe9BpJVwlzxIJSTT5a-rHIfWkrOS_q5E/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy82MzgvMjAxOTEyMDYxMzM3LW1haW4uY3JvcHBlZF8xNTc1NjE0MjU5LmpwZw.jpg"
                     class="d-block w-100" alt="Third Slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <h5>Munir Said Thalib</h5>
+                    <p>“Setiap orang yang dilahirkan merdeka, memiliki hak dan martabat yang sama.“</p>
                 </div>
             </div>
         </div>
@@ -66,22 +76,32 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+        <a class="btn btn-primary btn-open" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first
+            modal</a>
     </div>
 
     <div>
-        <h1 class="text-center text-bold">
+        <h1 class="text-center font-weight-bold">
             Pesan dari Donatur kami...
         </h1>
     </div>
 
+    <div id="harapan-data" class = "card flex-col">
+
+    </div>
+
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
+            <div class="d-flex gap-3 flex-row">
+                <h5 class="card-title font-weight-bold">Donatur 1</h5>
+                <p class="card-text mx-3"><small class="text-muted">Donatur1@email.com</small></p>
+            </div>
+
+            <p class="card-text">"This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer."</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
-    </div>
+    </div> 
 
     <div>
         <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
@@ -96,27 +116,81 @@
                         Show a second modal and hide this one with the button below.
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
+                        <button id="save-harapan" type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
                             data-bs-dismiss="modal">Open second modal</button>
                     </div>
                 </div>
             </div>
         </div>
-       
-        <div>
-            <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
-        </div>
+
     </div>
 </div>
 
 <script>
+
+    $(function () {
+        $('#myCarousel').carousel();
+    });
+
     $('.carousel-control-prev').click(function () {
         $('#myCarousel').carousel('prev');
     });
 
-    $('.carousel-control-right').click(function () {
+    $('.carousel-control-next').click(function () {
         $('#myCarousel').carousel('next');
     });
+
+    const modal = document.querySelector(".modal");
+    const openModalBtn = document.querySelector(".btn-open");
+    const closeModalBtn = document.querySelector(".btn-close");
+
+    const openModal = function () {
+        modal.classList.remove("hidden");
+        openModalBtn.classList.add("hidden");
+    };
+
+    const closeModal = function () {
+        modal.classList.add("hidden");
+        openModalBtn.classList.remove("hidden");
+    };
+
+    openModalBtn.addEventListener("click", openModal);
+    closeModalBtn.addEventListener("click", closeModal);
+
+    function createTask() {
+        $.post({
+            url: `add-harapan/`,
+            type: 'post',
+            data: {
+                'text': $('#text-handler').val(),
+            },
+            success: harapanShow
+        })
+    }
+    $(`#save-harapan`).attr('onclick', `createTask()`);
+
+    function harapanShow() {
+        $('#harapan-data').empty();
+        $.getJSON("./json", function (result) {
+            for (let i = 0; i < result.length; i++) {
+                $('#harapan-data').append(
+                    `<div class="card">
+                        <div class="card-body">
+                            <div class="d-flex gap-3 flex-row">
+                                <h5 class="card-title font-weight-bold">${result[i].fields.user.name}</h5>
+                                <p class="card-text mx-3"><small class="text-muted">${result[i].fields.user.email}</small></p>
+                            </div>
+
+                            <p class="card-text">"${result[i].fields.text}"</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>`
+                )
+            }
+        });
+    }
+
+    harapanShow();
 
 </script>
 
