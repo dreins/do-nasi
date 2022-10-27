@@ -29,7 +29,7 @@ class PenggunaManager(BaseUserManager):
 
 class Pengguna(AbstractBaseUser):
     email = models.EmailField(verbose_name="email", unique=True)
-    username = models.CharField(max_length=30, unique=True)
+    username = models.CharField(max_length=30, unique=True, default=None)
     name = models.CharField(max_length=50)
     role = models.CharField(max_length=10)
     is_admin = models.BooleanField(default=False)
@@ -37,11 +37,11 @@ class Pengguna(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
-    objects = PenggunaManager()
-
     # use email to login
     USERNAME_FIELD ='email'
     REQUIRED_FIELDS = ['username']
+
+    objects = PenggunaManager()
 
     def __str__(self):
         return self.username
