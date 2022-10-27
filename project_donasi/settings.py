@@ -43,10 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'landing_page',
-<<<<<<< HEAD
-=======
     'harapan_page',
->>>>>>> main
+    'page_overview',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +135,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

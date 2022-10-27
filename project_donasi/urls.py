@@ -19,10 +19,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landing_page.urls')),
-<<<<<<< HEAD
-=======
+    path('page_overview/', include('page_overview.urls')),
     path('harapan-donatur/', include('harapan_page.urls')),
->>>>>>> main
 ]
 
 # TODO: Implement Routings Here
