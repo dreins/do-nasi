@@ -26,6 +26,7 @@
         margin: 40px;
     }
 
+
     .card:hover {
         transform: scale(1.01);
         box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
@@ -81,9 +82,23 @@
     </div>
 
     <div>
+        {% if request.user.is_authenticated %}
+        {% if user.role == "Donatur" %}
+        <h1 class="text-center font-weight-bold">
+            Masukkan harapan anda, {{user.username}} !
+        </h1>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-outline-warning btn-rounded" data-mdb-ripple-color="dark"
+                data-toggle="modal" data-target="#modalAddHarapan">
+                Add Harapan
+            </button>
+        </div>
+        {% else %}
         <h1 class="text-center font-weight-bold">
             Pesan dari Donatur kami...
         </h1>
+        {% endif %}
+        {% endif %}
     </div>
 
     <div id="harapan-data">
@@ -106,9 +121,11 @@
     -->
 
     <!-- Button trigger modal -->
-    <button type="button" data-toggle="modal" data-target="#modalAddHarapan">
+    <!--
+    <button type="button" class="btn btn-primary-outline" data-toggle="modal" data-target="#modalAddHarapan">
         Add Harapan
     </button>
+    -->
 
     <!-- Modal -->
     <div class="modal fade" id="modalAddHarapan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter"
@@ -117,7 +134,7 @@
             <div class="modal-content">
                 <!--Modal Header-->
                 <div class="modal-header">
-                    <h1 class="modal-title" id="myModalLabel">Tambahkan Harapan Anda!</h1>
+                    <h3 class="modal-title" id="myModalLabel">Tambahkan harapan anda !</h3>
                 </div>
                 <!--Modal Body-->
 
@@ -133,8 +150,10 @@
 
                 <!--Modal Footer-->
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal">Close</button>
-                    <button id="save-harapan" data-dismiss="modal" type="submit">Add Task</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Close</button>
+                    {% if text-handler == "" %}
+                    <button id="save-harapan" data-dismiss="modal" type="submit" class="btn btn-outline-success">Add
+                        Task</button>
                 </div>
             </div>
         </div>
@@ -173,7 +192,7 @@
     // closeModalBtn.addEventListener("click", closeModal);
 
     function createHarapan() {
-        if ($('#text-handler').val() != "") {           
+        if ($('#text-handler').val() != "") {
             $.post({
                 url: 'add-harapan/',
                 type: 'post',
