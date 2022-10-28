@@ -11,13 +11,6 @@ from landing_page.models import Pengguna
 from django.views.generic import ListView, DetailView
 # Create your views here.
 
-class EventListView(ListView):
-    model = Donasi
-    template_name: 'page_overview.html'
-
-class EventDetailView(DetailView):
-    model = Donasi
-    template_name: 'countdown.html'
 @login_required(login_url='/landing_page/login/')
 def show_overview(request):
     if request.user.is_authenticated:
@@ -65,14 +58,12 @@ def get_json(request):
         list = Donasi.objects.filter(user = pengguna)
         return HttpResponse(serializers.serialize("json", list), content_type="application/json")
     else :
-        data = Donasi.objects.all()
-        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+        list = Donasi.objects.all()
+        return HttpResponse(serializers.serialize("json", list), content_type="application/json")
 
 def do_donation(request, id):
     if request.user.is_authenticated:
-        pengguna = Pengguna.objects.get(username = request.user.username)
-        donate = Donasi.objects.get(user = pengguna, id = id)
-        # donate = Donasi.objects.get(id=id)
+        donate = Donasi.objects.get(id=id)
         donate.Donation = True
         donate.save()
         return JsonResponse({'msg':'success'})

@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </script>
     <script>
+        var text;
         $(document).ready(function () {
             card_pemberi();
             card_penyalur();
@@ -26,9 +27,9 @@
                 data: '{{ list }}',
                 success: function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        var date = countdown(data[i].fields.deadline);
-                        var row = `<div class="col-12" >
-                                                <div class="card text-center"  id = card>
+                        var date = countdown(data[i].fields.deadline, data[i].pk) ;
+                        var row = `<div class="col-4" >
+                                                <div class="card text-center">
                                                     <div class="card-header">
                                                         <h4>${data[i].fields.title}</h4>
                                                     </div>
@@ -42,14 +43,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-footer">
-                                                        <p id = "count"></p>
+                                                        <p id = "card ${data[i].pk}"> </p>
                                                     </div>
                                                 </div>
                                             </div>`;
                         $('#penyalur-card').append(row);
                     }
                 },
-                error: function (jqXHR, textStatus, errorThrown) {
+                error: function(jqXHR, textStatus, errorThrown) {
                     alert('Error: ' + textStatus + ' - ' + errorThrown);
                 }
             });
@@ -59,9 +60,11 @@
             $.ajax({
                 url: './json/.',
                 dataType: 'json',
+                data: '{{ list }}',
                 success: function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        var row = `<div class="col-12">
+                        var date = countdown(data[i].fields.deadline, data[i].pk);
+                        var row = `<div class="col-4">
                                                 <div class="card text-center h-100" id = card>
                                                     <div class="card-header">
                                                         <h4>${data[i].fields.title}</h4>
@@ -74,38 +77,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-footer">
+                                                        <div class="col-md-12">
+                                                            <p id = "card ${data[i].pk}"> </p>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                        <button class="btn btn-primary" style="text-align: center;"
+                                                        onclick="melakukan_donasi(${data[i].pk});"> Donate </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>`;
-
-                                            // var row = `<div class="col-12">
-                                            //     <div class="card text-center h-100" id = card>
-                                            //         <div class="card-header">
-                                            //             <h4>${data[i].fields.title}</h4>
-                                            //         </div>
-                                            //         <div class="card-body">
-                                            //             <div class="container text-center">
-                                            //                 <div class="row align-item-start">
-                                            //                     <p>${data[i].fields.description}</p>
-                                            //                 </div>
-                                            //             </div>
-                                            //         </div>
-                                            //         <div class="card-footer ${colour}">
-                                            //             <div class="row">
-                                            //                 <div class="col-md-12">
-                                            //                     <button class="btn btn-primary" style="text-align: center;"
-                                            //                     onclick="melakukan_donasi(${data[i].pk});">Donate</button>
-                                            //                 </div>
-                                            //             </div>
-                                            //             <div class="row">
-                                            //                 <div class="col-md-12">
-                                            //                     <p>${response}</p>
-                                            //                 </div>
-                                            //             </div>
-                                                       
-                                            //         </div>
-                                            //     </div>
-                                            // </div>`;
                         $('#pemberi-card').append(row);
                     }
                 },
@@ -115,22 +96,17 @@
             });
         }
 
-        function melakukan_donasi(d){
+        function melakukan_donasi(id){
             $.ajax({
                 url: `./donate/${id}`,
                 dataType : 'json',
                 success: function(data){
-                    card_pemberi();
+                    alert("Anda telah melakukan donasi")
                 }
             })
         }
 
         function add_donasi() {
-            var title = $("#title_input").val();
-            var description = $("#description_input").val();
-            var deadline = $("#date_input").val();
-            var csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val();
-
             $.ajax({
                 type: 'POST',
                 url: './add/',
@@ -144,6 +120,7 @@
                     card_pemberi()
                     card_penyalur();
                     form_reset();
+                    countdown();
                 },
                 error: function (xhr, errmsg, err) {
                     console.log(xhr.status + ": " + xhr.responseText);
@@ -151,35 +128,29 @@
             });
         }
 
-        function countdown(countdown){
 
+        function countdown(countdown, id){
+            text = "";
             var x = setInterval(function () {
-                var text = "";
-
                 var deadline_time = new Date(countdown).getTime();
-
                 var now = new Date().getTime();
-                
-                var difference = deadline_time - now;
 
+                var difference = deadline_time - now;
                 var days = Math.floor(difference / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-
+                
                 if (difference < 0) {
-                    // let print = document.getElementById("counter")
-                    var text =  "EXPIRED!";
+                    document.getElementById(`card ${id}`).innerHTML = "EXPIRED!"
+                    
                 }
                 else{
-                    // let print = document.getElementById("counter");
-                    // print.append("Expired in : " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ")
-                    var text =  "Expired in : " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                    document.getElementById(`card ${id}`).innerHTML =  "Expired in : " + days + "d " + hours + "h " + minutes + "m " + seconds + "s "
                 }
-                // $('#count').append(text);
-
             }, 1000);
+            
         }
     </script>
 
@@ -193,8 +164,13 @@
         }
 
         #buttons {
-            margin-top: 20%;
+            margin-top: 5%;
         }
+        .card:hover {
+            transition: 1s;
+            transform: scale(1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+    }
     </style>
 </head>
 
