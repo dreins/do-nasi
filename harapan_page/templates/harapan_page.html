@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
     integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
     integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
     crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
     integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
     crossorigin="anonymous"></script>
@@ -47,8 +48,8 @@
                 <img src="https://www.london.ac.uk/sites/default/files/styles/max_1300x1300/public/2018-07/nelson-lc-mandela-day.jpg?itok=gPOR6fdZ"
                     class="d-block w-100" alt="Second Slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h6>“Overcoming poverty is not a task of charity, it is an act of justice.”</h6>
                     <h3>Nelson Mandela</h3>
+                    <h6>“Overcoming poverty is not a task of charity, it is an act of justice.”</h6>
                 </div>
             </div>
             <div class="carousel-item">
@@ -56,7 +57,7 @@
                     class="d-block w-100" alt="First Slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Mahatma Gandhi</h3>
-                    <p>“Life as if you were to die tomorrow. Learn as if you were life forever.“</p>
+                    <p>“Life as if you were to die tomorrow. Learn as if you were life forever.”</p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -64,7 +65,7 @@
                     class="d-block w-100" alt="Third Slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Munir Said Thalib</h5>
-                    <p>“Setiap orang yang dilahirkan merdeka, memiliki hak dan martabat yang sama.“</p>
+                    <p>“Setiap orang yang dilahirkan merdeka, memiliki hak dan martabat yang sama.”</p>
                 </div>
             </div>
         </div>
@@ -76,8 +77,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-        <a class="btn btn-primary btn-open" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first
-            modal</a>
+
     </div>
 
     <div>
@@ -86,10 +86,11 @@
         </h1>
     </div>
 
-    <div id="harapan-data" class = "card flex-col">
+    <div id="harapan-data">
 
     </div>
 
+    <!-- Card HTML
     <div class="card">
         <div class="card-body">
             <div class="d-flex gap-3 flex-row">
@@ -101,28 +102,42 @@
                 content. This content is a little bit longer."</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
-    </div> 
+    </div>
+    -->
 
-    <div>
-        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-            tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Show a second modal and hide this one with the button below.
-                    </div>
-                    <div class="modal-footer">
-                        <button id="save-harapan" type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
-                            data-bs-dismiss="modal">Open second modal</button>
-                    </div>
+    <!-- Button trigger modal -->
+    <button type="button" data-toggle="modal" data-target="#modalAddHarapan">
+        Add Harapan
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAddHarapan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <!--Modal Header-->
+                <div class="modal-header">
+                    <h1 class="modal-title" id="myModalLabel">Tambahkan Harapan Anda!</h1>
+                </div>
+                <!--Modal Body-->
+
+                <div class="modal-body">
+                    <form method="POST" action="" id="add-task-form">
+                        {% csrf_token %}
+                        <div class="form-outline mb-10">
+                            <textarea id='text-handler' type="text" rows="10" class="form-control" name="Hope"
+                                placeholder="Your hope" required=""></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <!--Modal Footer-->
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal">Close</button>
+                    <button id="save-harapan" data-dismiss="modal" type="submit">Add Task</button>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -140,49 +155,51 @@
         $('#myCarousel').carousel('next');
     });
 
-    const modal = document.querySelector(".modal");
-    const openModalBtn = document.querySelector(".btn-open");
-    const closeModalBtn = document.querySelector(".btn-close");
+    const modal = document.querySelector("modal");
+    const AddBtn = document.querySelector(".add-btn");
+    // const closeModalBtn = document.querySelector(".btn-close");
 
     const openModal = function () {
         modal.classList.remove("hidden");
-        openModalBtn.classList.add("hidden");
+        // openModalBtn.classList.add("hidden");
     };
 
     const closeModal = function () {
         modal.classList.add("hidden");
-        openModalBtn.classList.remove("hidden");
+        // openModalBtn.classList.remove("hidden");
     };
 
-    openModalBtn.addEventListener("click", openModal);
-    closeModalBtn.addEventListener("click", closeModal);
+    // openModalBtn.addEventListener("click", openModal);
+    // closeModalBtn.addEventListener("click", closeModal);
 
-    function createTask() {
-        $.post({
-            url: `add-harapan/`,
-            type: 'post',
-            data: {
-                'text': $('#text-handler').val(),
-            },
-            success: harapanShow
-        })
+    function createHarapan() {
+        if ($('#text-handler').val() != "") {           
+            $.post({
+                url: 'add-harapan/',
+                type: 'post',
+                data: {
+                    'text': $('#text-handler').val(),
+                },
+                success: harapanShow,
+            })
+        }
     }
-    $(`#save-harapan`).attr('onclick', `createTask()`);
+    $('#save-harapan').attr('onclick', `createHarapan()`);
 
     function harapanShow() {
         $('#harapan-data').empty();
-        $.getJSON("./json", function (result) {
+        $.getJSON("./show-json", function (result) {
             for (let i = 0; i < result.length; i++) {
+                console.log(result[i].fields.user.name);
                 $('#harapan-data').append(
                     `<div class="card">
                         <div class="card-body">
                             <div class="d-flex gap-3 flex-row">
-                                <h5 class="card-title font-weight-bold">${result[i].fields.user.name}</h5>
-                                <p class="card-text mx-3"><small class="text-muted">${result[i].fields.user.email}</small></p>
+                                <h5 class="card-title font-weight-bold">${result[i].fields.username}</h5>
+                                <p class="card-text mx-3"><small class="text-muted">${result[i].fields.email}</small></p>
                             </div>
-
-                            <p class="card-text">"${result[i].fields.text}"</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <p class="card-text">${result[i].fields.text}</p>
+                            <p class="card-text"><small class="text-muted">${result[i].fields.created_at}</small></p>
                         </div>
                     </div>`
                 )
@@ -193,6 +210,5 @@
     harapanShow();
 
 </script>
-
 
 {% endblock content %}

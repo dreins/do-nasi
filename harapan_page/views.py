@@ -1,44 +1,62 @@
-import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from harapan_page.models import HarapanDonatur
+from landing_page.models import Pengguna
 from django.contrib import messages
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse
 
-# Create your views here.
-# @login_required(login_url='/todolist/login/')
 
+# @login_required(login_url='/login/')
 @csrf_exempt
 def show_harapan(request):
-    data_harapan = HarapanDonatur.objects.all()
-    context = {
-        # 'username': request.COOKIES['username'],
-        'mytodo': data_harapan,
-    }
-    return render(request, "harapan_page.html", context)
+    if request.user.is_authenticated:
+        role = request.user.role
+        if role == "Penyalur":
+            pengguna = Pengguna.objects.get(username=request.user.username)
+            data_harapan = HarapanDonatur.objects.filter(user=pengguna)
+            context = {
+                'roles': True,
+                'data_harapan': data_harapan,
+            }
+            return render(request, "harapan_page.html", context)
+        else:
+            data_harapan = HarapanDonatur.objects.all()
+            context = {
+                'roles': False,
+                'data_harapan': data_harapan,
+            }
+            return render(request, "harapan_page.html", context)
+    else:
+        return redirect('landing_page:login')
 
+
+@login_required(login_url='/login/')
 @csrf_exempt
 def harapan_page(request):
     if request.method == 'POST':
         user = request.user
         text = request.POST.get('text')
-        harapan_image = request.POST.get('harapan_image')
-        harapan = HarapanDonatur.objects.create(
-            user=user, text=text, harapan_image=harapan_image)
-        if harapan == None:
-            messages.info(request, 'Silahkan masukkan harapan anda!')
-        else:
-            return JsonResponse({'message' : 'Harapan Created!', 'error': False})
+        HarapanDonatur.objects.create(
+            user=user, text=text, username=user)
+        return JsonResponse({'message': 'Harapan Created!', 'error': False})
 
-    return JsonResponse({'message' : 'Harapan Uploaded!'})
 
 @csrf_exempt
 def show_harapan_json(request):
-    data = HarapanDonatur.objects.filter(user=request.user).order_by('-likes')
+    data = HarapanDonatur.objects.order_by('-likes')
 
     return HttpResponse(
-        serializers.serialize("json", data), 
+        serializers.serialize("json", data),
         content_type="application/json"
     )
+
+@login_required(login_url='/login/')
+@csrf_exempt
+def delete_ajax(request, key):
+    if request.method == 'POST':
+        mytask = get_object_or_404(HarapanDonatur, user = request.user, pk = key)
+        mytask.delete()
+        
+    return JsonResponse({'error': False})
