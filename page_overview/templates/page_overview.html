@@ -82,7 +82,7 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                         <button class="btn btn-primary" style="text-align: center;"
-                                                        onclick="melakukan_donasi(${data[i].pk});"> Donate </button>
+                                                        onclick="melakukan_donasi(${data[i].pk});" id = "donate${data[i].pk}"> Donate </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -128,9 +128,7 @@
             });
         }
 
-
         function countdown(countdown, id){
-            text = "";
             var x = setInterval(function () {
                 var deadline_time = new Date(countdown).getTime();
                 var now = new Date().getTime();
@@ -140,11 +138,10 @@
                 var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
                 
                 if (difference < 0) {
                     document.getElementById(`card ${id}`).innerHTML = "EXPIRED!"
-                    
+                    $(`#donate${id}`).hide();
                 }
                 else{
                     document.getElementById(`card ${id}`).innerHTML =  "Expired in : " + days + "d " + hours + "h " + minutes + "m " + seconds + "s "
