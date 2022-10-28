@@ -9,25 +9,35 @@ from django.http import JsonResponse, HttpResponse
 
 
 # @login_required(login_url='/login/')
-@csrf_exempt
+#@csrf_exempt
+#def show_harapan(request):
+#   if request.user.is_authenticated:
+#        role = request.user.role
+#        if role == "Penyalur":
+#            pengguna = Pengguna.objects.get(username=request.user.username)
+#            data_harapan = HarapanDonatur.objects.filter(user=pengguna)
+#            context = {
+#                'roles': True,
+#               'data_harapan': data_harapan,
+#            }
+#            return render(request, "harapan_page.html", context)
+#        else:
+#            data_harapan = HarapanDonatur.objects.all()
+#            context = {
+#                'roles': False,
+#                'data_harapan': data_harapan,
+#            }
+#            return render(request, "harapan_page.html", context)
+#    else:
+#        return redirect('landing_page:login')
+
 def show_harapan(request):
     if request.user.is_authenticated:
-        role = request.user.role
-        if role == "Penyalur":
-            pengguna = Pengguna.objects.get(username=request.user.username)
-            data_harapan = HarapanDonatur.objects.filter(user=pengguna)
-            context = {
-                'roles': True,
-                'data_harapan': data_harapan,
-            }
-            return render(request, "harapan_page.html", context)
-        else:
-            data_harapan = HarapanDonatur.objects.all()
-            context = {
-                'roles': False,
-                'data_harapan': data_harapan,
-            }
-            return render(request, "harapan_page.html", context)
+        data_harapan = HarapanDonatur.objects.all()
+        context = {
+            'data_harapan': data_harapan,
+        }
+        return render(request, "harapan_page.html", context)
     else:
         return redirect('landing_page:login')
 
@@ -39,13 +49,14 @@ def harapan_page(request):
         user = request.user
         text = request.POST.get('text')
         HarapanDonatur.objects.create(
-            user=user, text=text, username=user)
+           user=user, text=text, username=user, email = user.get_email())
+        # HarapanDonatur.objects.all().delete()
         return JsonResponse({'message': 'Harapan Created!', 'error': False})
 
 
 @csrf_exempt
 def show_harapan_json(request):
-    data = HarapanDonatur.objects.order_by('-likes')
+    data = HarapanDonatur.objects.all()
 
     return HttpResponse(
         serializers.serialize("json", data),

@@ -45,6 +45,9 @@ class Pengguna(AbstractBaseUser):
 
     def __str__(self):
         return self.username
+    
+    def get_email(self):
+        return self.email
 
     def has_perm(self, perm, obj=None):
         return self.is_admin
