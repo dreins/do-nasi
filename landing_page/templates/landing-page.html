@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
     {% block meta %}
         <title>do-nasi</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -9,8 +10,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
-        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Inknut Antiqua' rel='stylesheet'>
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,100;1,300;1,400&display=swap" rel="stylesheet"> -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
         <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -18,253 +21,188 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script> -->
         
-        <!-- <script>
-            $(document).on('submit', '#form', function(e){
-                var form_data = $('#form')
-                $.ajax({
-                    type: "POST",
-                    url: '/landing_page/login/',
-                    dataType: "json",
-                    data: form_data.serialize(),
-                    header: {'X-CSRFToken': '{% csrf_token %}'},
-                    success: function(){
-                        $("#form").trigger("reset");
-                        var success = response['success']
-                        if (success){
-                            update();
-                            alert("Successfully logged in!")
-                            document.getElementById('welcome-heading').innerHTML = 'Ayo mulai berdonasi!';
-                        } else {
-                            document.getElementById('welcome-heading').innerHTML = 'Gagal!';
-                        }
-                    }
-                });
-                
-            });
-            // function update() {
-                
-            //     document.getElementById('welcome-heading').innerHTML = 'Ayo mulai berdonasi!';
-            //     // document.getElementById('welcome-nama').innerHTML = 'Selamat datang, ' + $("#name").val() + '!';
-            //     document.getElementById('button-section').innerHTML = '<a href="{% url "landing_page:register" %}">Register</a>';
-
-                
-            // }
-        </script>
-     -->
         <style>
-            .navbar {
-                position: fixed; 
-                top: 0; 
-                width: 100%; 
-                height: 70px;
-                overflow: hidden;
-                box-shadow: 1px -3px 12px #000000;
-                background-color: white;
-                
-            }
-
-            .nav-container{
-                display: flex;
-                justify-content: space-between;
-                margin: 20px 40px;
-                width: 100%;
-            }
-
-            #logo {
-                font-family: 'Inknut Antiqua';
-                font-style: normal;
-                font-weight: 900;
-                font-size: 36px;
-                line-height: 93px;
-                letter-spacing: -0.017em;
-                margin-top: -40px;
-                padding: 0;
-                color: #FFCD2E;
-            }
-
-            .nav-buttons li{
-                display: inline;
-                margin: 25px;
-            }
-
-            .nav-buttons a{
-                text-decoration: none;
-                color: black;
-                
-            }
-
-            .nav-buttons a:hover{
-                text-decoration: none;
-                color: #FFCD2E;
-                
-            }
-
             main {
                 font-family: 'Poppins';
                 font-size: 20px;
+                font-weight: 400;
                 
             }
 
-            .img-container{
-                margin-top: 70px;
-                height: 100vh;
-                background-color: antiquewhite;
+            .nav-placement {
+                height: 50px;
+                
+            }
+
+            .welcome-section{
+                height: calc(100vh - 50px);
                 text-align: center;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .welcome-section img {
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 0.55;
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+                object-fit: cover;
+                z-index: -1;
+            }
+
+        
+            .welcome-heading h1{
+                color: #000000;
+                font-weight: 700;
+                font-size: 34px;
+                margin-bottom: 20px;
             }
 
             .welcome-heading{
-                padding-top: 70vh;
-                font-style: normal;
-                font-weight: 1000;
-                font-size: 40px;
-                line-height: 60px;
-                letter-spacing: -0.017em;
+                margin-top: calc(100vh - 190px);
+            }
+
+            .welcome-btn {
+                background: #FFCD2E;
+                border-radius: 9px;
+                box-shadow: 2px 3px 6px -1px #d8d8d8d2;
+            }
+
+            .welcome-btn:hover {
+                border: 1px solid #000;
+                background-color: rgba(255, 205, 46, 0);
+                color: #000;
+            }
+
+            .about {
+                height: 100vh;
+                padding: 80px 300px;
+                margin-top: 50px;
+                
+            }
+
+            .about h3 {
+                text-align: center;
+                font-weight: 600;
+                margin-bottom: 10px;
+                font-size: 27px;
+            }
+
+            .about p {
+                margin-bottom: 40px;
+                font-size: 15px;
+                text-align: justify;
+            }
+
+            .pengguna {
+                display: flex;
+                justify-content: space-between;
+                text-align: center;
+                
+            }
+
+            .pengguna h5 {
+                text-align: center;
+                font-weight: 500;
+                font-size: 18px;
+            }
+
+            .pengguna p {
+                text-align: justify;
+                font-size: 14px;
+                max-width: 320px;
+            }
+
+            .features h3 {
+                text-align: center;
+                font-weight: 600;
+                margin-bottom: 10px;
+                font-size: 27px;
+            }
+
+            .features{
+                height: 100vh;
+                padding: 70px 300px;
+            }
 
             
-            }
 
-            footer{
-                text-align: center;
-                margin-top: 10px;
-                margin-bottom: 0px;
-                width: 100%;
-                border-top: 2px solid #B0B0B0;
-                font-size: 17px;
-
-            }
-
-            footer .copyright {
-                margin-bottom: 0px;
-                margin-top: 10px;
-            }
-
-
-
+            
+            
         </style>
+
+    
     
     
     {% endblock meta %}
     {% block content %}
         <main>
-            <!-- <nav class="navbar">
-                <div class="nav-container">
-                    <h1 id="logo">do-nasi</h1>
-                    <ul class="nav-buttons" >
-                        <li><a href="{% url 'landing_page:logout' %}">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Article</a></li>
-                        {% if user.is_authenticated %}
-                            <li><a href="{% url 'landing_page:logout' %}">Logout</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </nav> -->
+            <nav class="nav-placement"></nav>
+            <div class="welcome-section">
+                <img src="https://s41256.pcdn.co/wp-content/uploads/2022/05/220527-WorldHunger-AI_2-1024x538.jpg">
+                <div class="content-container">
+                    <div class="content">
+                        <div class="welcome-heading">
+                            {% if user.is_authenticated %}
+                                <h1>Selamat datang, {{user.name}}!</h1>
+                            {% else %}
+                                <h1><b>Ikut menjadi bagian dari do-nasi!</b></h1>
+                            {% endif %}
+                        </div>
 
-            <div class="img-container">
-                <div class="welcome-section">
-                    {% if user.is_authenticated %}
-                        <h1 class="welcome-heading">Selamat datang, {{user.name}}!</h1>
-                    {% else %}
-                        <h1 class="welcome-heading">Ikut menjadi bagian dari do-nasi!</h1>
-                    {% endif %}
-                </div>
+                        <div class="button-section">
+                            {% if user.is_authenticated %}
+                                {% if user.role == "Donatur" %}
+                                    <a class="btn welcome-btn" href="#" role="button">Mulai berdonasi</a>
+                                {% else %}
+                                    <a class="btn welcome-btn" href="#" role="button">Add donasi</a>
+                                {% endif %}
+                            {% else %}
+                                <a class="btn welcome-btn" href="{% url 'landing_page:login' %}" role="button">Log in</a>
+                                <a class="btn welcome-btn" href="{% url 'landing_page:register' %}" role="button">Register</a>
+                            {% endif %}
+                            <br>
 
-                <div class="button-section">
-                    {% if user.is_authenticated %}
-                        <a href=#>Mulai berdonasi</a>
-                        <a href="{% url 'landing_page:logout' %}">Logout</a>
-                    {% else %}
-                        <a href="{% url 'landing_page:login' %}">Login</a>
-                        <a href="{% url 'landing_page:register' %}">Register</a>
-                        {% endif %}
-                        <br>
-                </div>
-            </div>
-
-            <!-- {% if user.is_authenticated %}
-                <h1>Selamat datang {{user.name}}</h1>
-            {% endif %} -->
-
-
-            <!-- <div class="login-section">
-                <div class="welcoming-section">
-                    <h1 id="welcome-heading">Ikut menjadi bagian dari do-nasi!</h1>
-                    <p id="welcome-nama"></p> -->
-                <!-- </div id="button-section"> -->
-                <!-- Button trigger modal -->
-                <!-- <button type="button" class="btn login" data-toggle="modal" data-target="#loginModal">Login</button>  -->
-                
-                <!-- {% if user.is_authenticated %}
-                    <a href=#>Mulai berdonasi</a>
-                    <a href="{% url 'landing_page:logout' %}">Logout</a>
-                {% else %}
-                <a href="{% url 'landing_page:login' %}">Login</a>
-                <a href="{% url 'landing_page:register' %}">Register</a>
-                {% endif %}
-                <br> -->
-
-                <!-- <div class="modal fade" id="loginModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="loginLabel">Login</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form method="POST" id="form">
-                                {% csrf_token %}
-                                <table>
-                                    <tr><td><label for="email">Email: </label></td></tr> 
-                                    <tr>
-                                        <td><input id="emailInput" type="email" name="email" class="form-control"></td>
-                                    </tr>
-                                    <tr><td><label for="password">Password: </label></td></tr> 
-                                    <tr>   
-                                    <tr>
-                                        <td><input id="passwordInput" type="password" name="password" class="form-control"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><button type="submit" id="reg-button" value="Masuk" class="btn btn-primary btn-block" style="width: 426px;">Submit</button></td>
-                                    </tr>
-                                    
-                                </table>
-                            </form>
                         </div>
                     </div>
-                </div> -->
-
-
-                
-            <!-- </div> -->
-
-            <div class="about" style="font-family: 'Poppins';">
-                <h3>What is do-nasi?</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus amet pretium in nulla 
-                    adipiscing cras. Sem egestas metus tellus cras faucibus. Velit amet feugiat feugiat 
-                    feugiat. Egestas eu arcu egestas rhoncus vitae a interdum nisl ornare. Faucibus morbi 
-                    elementum, etiam aliquet egestas eros. Sed sed ut tellus, morbi leo. Id mauris neque, 
-                    vulputate tellus dis faucibus risus, ullamcorper. Dui id aliquet fusce turpis urna, a. 
-                    Dignissim urna semper id vulputate urna a. Ut nulla fermentum non mattis ultricies. 
-                    Consequat a, sed tristique sit dignissim varius amet massa. Nulla proin mauris et velit 
-                    aliquet donec porttitor.
+                </div>
+            </div>
+         
+            <div class="about" id="about">
+                <h3>The Story Behind do-nasi</h3>
+                <p>Permasalahan terkait kesehatan global menjadi salah satu topik yang dibahas dalam <a id="g20" href="https://www.oecd.org/g20/topics" target="_blank" style="color: #FFCD2E;">G20</a>. 
+                    The G20 Health Working Group (HWG) membuat beberapa agenda internasional untuk memperkuat sistem kesehatan
+                    global salah satunya adalah dengan cara mengurangi jumlah malnutrisi. 
+                    Do-nasi hadir sebagai sebuah aplikasi yang memberikan ruang untuk saling berbagi dan 
+                    menyalurkan makanan atau uang untuk masyarakat yang membutuhkan.
+                    Perancangan aplikasi ini ditujukan untuk membantu mengurangi angka kelaparan dan malnutrisi secara bersama-sama.
+                    Pengguna dapat 
+                    mendaftarkan diri sebagai pemberi donasi (donatur) ataupun penyalur donasi (sukarelawan).
                 </p>
-                <h3>Why do-nasi?</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus amet pretium in nulla 
-                    adipiscing cras. Sem egestas metus tellus cras faucibus. Velit amet feugiat feugiat 
-                    feugiat. Egestas eu arcu egestas rhoncus vitae a interdum nisl ornare. Faucibus morbi 
-                    elementum, etiam aliquet egestas eros. Sed sed ut tellus, morbi leo. Id mauris neque, 
-                    vulputate tellus dis faucibus risus, ullamcorper. Dui id aliquet fusce turpis urna, a. 
-                    Dignissim urna semper id vulputate urna a. Ut nulla fermentum non mattis ultricies. 
-                    Consequat a, sed tristique sit dignissim varius amet massa. Nulla proin mauris et velit 
-                    aliquet donec porttitor.
-                </p>
+                <div class="pengguna">
+                    <div class="penyalur">
+                        <img src="{% static 'images/penyalur.png' %}" style="width: 120px;">
+                        <h5>Penyalur</h5>
+                        <p>Pengguna yang mendaftarkan dirinya sebagai penyalur dapat membuka donasi baru untuk kemudian disalurkan ke orang-orang yang membutuhkan.</p>
+
+                    </div>
+
+                    <div class="donatur">
+                        <img src="{% static 'images/donatur.png' %}" style="width: 120px;">
+                        <h5>Donatur</h5>
+                        <p>Pengguna yang mendaftarkan dirinya sebagai donatur dapat menyumbangkan makanan/uang ke donasi yang dibuka oleh para penyalur.</p>
+                    </div>
+                </div>
             </div>
 
-            
-            <!-- <footer>
-                <p class="copyright">© 2022 Kelompok C-05</p>
-                <p class="mata-kuliah">Platform-based Programming
-                    Odd Semester 2022/2023</p>
-            </footer> -->
+            <div class="features" id="features">
+                <h3>Our Features</h3>
+
+
+            </div>
+
         </main>
     {% endblock content %}
