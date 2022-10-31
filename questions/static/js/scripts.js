@@ -2,7 +2,7 @@ function showData(){
   $.get("./json/all-posts", function(item){
     if(item.length == 0){
       $("#posts").append(
-        '<h4 id="nopost" class="pt-3" style="text-align: center">No posts yet..</h4>'
+        '<h4 id="nopost" class="my-5" style="text-align: center">No posts yet..</h4>'
       )
     }
     else{
