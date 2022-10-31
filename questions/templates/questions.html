@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block meta %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock meta %}
+
+{% block content %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
+  <script src="{% static 'js/scripts.js' %}"></script>
+
+  <div class="header-section">
+    <img src="https://lingkarjatim.com/wp-content/uploads/2020/04/IMG-20200420-WA0046-1024x768.jpg">
+    <h1>Discussion</h1>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-sm-center mt-5 px-10">
+      <div class="col-md-3">
+        <i class="bi bi-chat-right-text-fill text-warning" style="font-size:10vw"></i>
+      </div>
+      <div class="col-lg-8 my-auto">
+        <div class="big-title">We hear you!</div>
+        <p>
+          Sebagai sebuah layanan jasa integrasi Donatur dan Penyalur donasi, kami menjunjung
+          tinggi transparansi dan kejujuran. Laman diskusi ini hadir sebagai
+          salah satu sarana 'jembatan' antara Penyalur dan Donatur.
+        </p>
+        <p>
+          Para Penyalur dan Donatur dapat mem-<i>posting</i> pertanyaan serta dapat 
+          merespons <i>post</i> terkait dengan menambahkan komentar (<i>reply</i>).
+        </p>
+      </div>
+    </div>
+
+    <div class="row justify-content-sm-center mt-3 px-10">
+      <div class="col-md-3">
+        <i class="bi bi-question-diamond-fill text-warning" style="font-size:10vw"></i>
+      </div>
+      <div class="col-lg-8 pr-5">
+        <div class="big-title">Frequently Asked Questions</div>
+        {% for q in faq %}
+          <div class="card-header">
+            <p>
+              <a class="btn btn-block text-left border-secondary" data-bs-toggle="collapse" href="#FAQ-{{q.id}}" role="button" aria-expanded="false" aria-controls="collapseExample" style="font-size: 18px">
+                {{q.question}}
+              </a>
+            </p>
+          </div>
+          <div class="collapse" id="FAQ-{{q.id}}">
+            <div class="card-body px-3">
+              <p>{{q.answer}}</p>
+            </div>
+          </div>     
+        {% endfor %}
+      </div>
+    </div>
+
+      {% if not request.user.is_authenticated %}
+      <div class="jumbotron mt-5 p-3">
+        <a href="">Login</a> to post a new discussion<br>
+        <small>Don't have an account yet? <a href="">Register</a> now!</small>
+      </div>
+      {% else %}
+      <!-- Form for putting a post -->
+      <div class="form-discuss mt-5 py-3 px-3">
+        <form method="POST" id="add-post">
+          <h2 style="text-align:center">Post a Discussion</h2>
+          {% csrf_token %}
+          <div class="form-group">
+            <label>Title:</label>
+            <input type="text" name="title" id="title" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Body:</label>
+            <textarea rows="3" cols="70" name="body" id="body" class="form-control" required></textarea>
+          </div>
+
+          <div id="formbutton-position">
+            <button class="btn btn-dark" type="submit" style="margin-top: 10px;"> add post </button>
+          </div>
+        </form> 
+      </div>
+      {% endif %}
+
+    <div id="posts">
+        <!-- A post and comments will be appended through ajax -->
+    </div>
+  </div>
+
+  {{ request.user.username|json_script:"user_username" }}
+{% endblock content %}

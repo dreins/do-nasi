@@ -21,6 +21,6 @@ urlpatterns = [
     path('', include('landing_page.urls')),
     path('page_overview/', include('page_overview.urls')),
     path('harapan-donatur/', include('harapan_page.urls')),
+    path('questions/', include('questions.urls')),
 ]
 
-# TODO: Implement Routings Here
