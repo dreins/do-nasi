@@ -1,11 +1,15 @@
 import json
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
+from django.core import serializers
+from landing_page.models import Pengguna
+from page_overview.models import Donasi
 from .forms import FormLogin, FormRegister, FormLogin
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import AnonymousUser
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 
 
 # Landing page
@@ -84,4 +88,14 @@ def logout_view(request):
 	request.user = AnonymousUser
 	return redirect("landing_page:landing_page")
 
-
+def get_json_penyalur(request):
+	if request.user.is_authenticated:
+		if request.user.role == "Penyalur":
+			pengguna = Pengguna.objects.get(username = request.user.username)
+			list = Donasi.objects.filter(user = pengguna)
+			return HttpResponse(serializers.serialize("json", list), content_type="application/json")
+		else :
+			list = Donasi.objects.all()
+			return HttpResponse(serializers.serialize("json", list), content_type="application/json")
+	else:
+		return HttpResponse(status=204)

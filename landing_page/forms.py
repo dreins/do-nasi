@@ -15,7 +15,7 @@ class FormRegister(UserCreationForm):
             account = Pengguna.objects.exclude(pk=self.instance.pk).get(email=email)
         except Pengguna.DoesNotExist:
             return email
-        raise forms.ValidationError('Email "%s" is already in use.' % email)
+        raise forms.ValidationError('Email "%s" sudah terdaftar.' % email)
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -23,7 +23,7 @@ class FormRegister(UserCreationForm):
             user = Pengguna.objects.exclude(pk=self.instance.pk).get(username=username)
         except Pengguna.DoesNotExist:
             return username
-        raise forms.ValidationError('Username "%s" is already in use.' % username)
+        raise forms.ValidationError('Username "%s" sudah digunakan.' % username)
 
 class FormLogin(forms.ModelForm):
     password = forms.CharField(label="password", widget=forms.PasswordInput)
