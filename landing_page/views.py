@@ -5,11 +5,14 @@ from .forms import FormLogin, FormRegister, FormLogin
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import AnonymousUser
+from django.views.decorators.csrf import csrf_protect
 
 
 # Landing page
 def landing_page(request):
-    return render(request, 'landing-page.html')
+	return render(request, "landing-page.html")
+
+	
 
 # Register
 # def register(request):
@@ -31,6 +34,7 @@ def landing_page(request):
 #     context = {'form':form}
 #     return render(request, 'register.html', context)
 
+@csrf_exempt
 def register(request):
 	context = {}
 	if request.POST:
@@ -51,6 +55,7 @@ def register(request):
 		context['registration_form'] = form
 	return render(request, 'register.html', context)
 
+@csrf_protect
 def login_page(request):
     context = {}
     user = request.user
@@ -70,6 +75,7 @@ def login_page(request):
     else:
         form = FormLogin()
     context['login_form'] = form
+	
     return render(request, "login.html", context)
 
 def logout_view(request):
