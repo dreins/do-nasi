@@ -1,81 +1,65 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block meta %}
-<title>do-nasi</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-    integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-    integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-    crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-    integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-    crossorigin="anonymous"></script>
-<!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,100;1,300;1,400&display=swap" rel="stylesheet"> -->
+    {% block meta %}
+        <title>do-nasi</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,100;1,300;1,400&display=swap" rel="stylesheet"> -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script> -->
-
-<!-- <script>
-            $(document).on('submit', '#form', function(e){
-                var form_data = $('#form')
-                $.ajax({
-                    type: "POST",
-                    url: '/landing_page/login/',
-                    dataType: "json",
-                    data: form_data.serialize(),
-                    header: {'X-CSRFToken': '{% csrf_token %}'},
-                    success: function(){
-                        $("#form").trigger("reset");
-                        var success = response['success']
-                        if (success){
-                            update();
-                            alert("Successfully logged in!")
-                            document.getElementById('welcome-heading').innerHTML = 'Ayo mulai berdonasi!';
-                        } else {
-                            document.getElementById('welcome-heading').innerHTML = 'Gagal!';
-                        }
-                    }
-                });
-                
-            });
-            // function update() {
+        
+        <style>
+            main {
+                font-family: 'Poppins';
+                font-size: 20px;
+                font-weight: 400;
                 
             }
 
+            .nav-placement {
+                height: 50px;
                 
-            // }
-        </script>
-     -->
-<style>
-    .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        height: 70px;
-        overflow: hidden;
-        box-shadow: 1px -3px 12px #000000;
-        background-color: white;
+            }
 
-    }
+            .welcome-section{
+                height: calc(100vh - 50px);
+                text-align: center;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .welcome-section img {
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 0.55;
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+                object-fit: cover;
+                z-index: -1;
+            }
+
+        
+            .welcome-heading h1{
+                color: #000000;
+                font-weight: 700;
+                font-size: 34px;
+                margin-bottom: 20px;
+            }
 
             .welcome-heading{
                 margin-top: calc(100vh - 190px);
@@ -87,18 +71,18 @@
                 box-shadow: 2px 3px 6px -1px #d8d8d8d2;
             }
 
-    .welcome-btn:hover  {
-        border: 1px solid #000;
-        background-color: rgba(255, 205, 46, 0);
+            .welcome-btn:hover {
+                border: 1px solid #000;
+                background-color: rgba(255, 205, 46, 0);
                 color: #000;
-    }
+            }
 
-    .about  {
-        height: 100vh;
+            .about {
+                height: 100vh;
                 padding: 80px 300px;
-        margin-top: 50px;
-
-    }
+                margin-top: 50px;
+                
+            }
 
             .about h3 {
                 text-align: center;
@@ -113,12 +97,12 @@
                 text-align: justify;
             }
 
-    .pengguna {
-        display: flex;
-        justify-content: space-between;
+            .pengguna {
+                display: flex;
+                justify-content: space-between;
                 text-align: center;
-
-    }
+                
+            }
 
             .pengguna h5 {
                 text-align: center;
@@ -142,7 +126,7 @@
             .features{
                 height: 100vh;
                 padding: 70px 300px;
-    }
+            }
 
             
 
@@ -204,67 +188,21 @@
                         <h5>Penyalur</h5>
                         <p>Pengguna yang mendaftarkan dirinya sebagai penyalur dapat membuka donasi baru untuk kemudian disalurkan ke orang-orang yang membutuhkan.</p>
 
-    <!-- <div class="modal fade" id="loginModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="loginLabel">Login</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form method="POST" id="form">
-                                {% csrf_token %}
-                                <table>
-                                    <tr><td><label for="email">Email: </label></td></tr> 
-                                    <tr>
-                                        <td><input id="emailInput" type="email" name="email" class="form-control"></td>
-                                    </tr>
-                                    <tr><td><label for="password">Password: </label></td></tr> 
-                                    <tr>   
-                                    <tr>
-                                        <td><input id="passwordInput" type="password" name="password" class="form-control"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><button type="submit" id="reg-button" value="Masuk" class="btn btn-primary btn-block" style="width: 426px;">Submit</button></td>
-                                    </tr>
-                                    
-                                </table>
-                            </form>
-                        </div>
                     </div>
-                </div> -->
+
+                    <div class="donatur">
+                        <img src="{% static 'images/donatur.png' %}" style="width: 120px;">
+                        <h5>Donatur</h5>
+                        <p>Pengguna yang mendaftarkan dirinya sebagai donatur dapat menyumbangkan makanan/uang ke donasi yang dibuka oleh para penyalur.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features" id="features">
+                <h3>Our Features</h3>
 
 
+            </div>
 
-    <!-- </div> -->
-
-    <div class="about" style="font-family: 'Poppins';">
-        <h3>What is do-nasi?</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus amet pretium in nulla
-            adipiscing cras. Sem egestas metus tellus cras faucibus. Velit amet feugiat feugiat
-            feugiat. Egestas eu arcu egestas rhoncus vitae a interdum nisl ornare. Faucibus morbi
-            elementum, etiam aliquet egestas eros. Sed sed ut tellus, morbi leo. Id mauris neque,
-            vulputate tellus dis faucibus risus, ullamcorper. Dui id aliquet fusce turpis urna, a.
-            Dignissim urna semper id vulputate urna a. Ut nulla fermentum non mattis ultricies.
-            Consequat a, sed tristique sit dignissim varius amet massa. Nulla proin mauris et velit
-            aliquet donec porttitor.
-        </p>
-        <h3>Why do-nasi?</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus amet pretium in nulla
-            adipiscing cras. Sem egestas metus tellus cras faucibus. Velit amet feugiat feugiat
-            feugiat. Egestas eu arcu egestas rhoncus vitae a interdum nisl ornare. Faucibus morbi
-            elementum, etiam aliquet egestas eros. Sed sed ut tellus, morbi leo. Id mauris neque,
-            vulputate tellus dis faucibus risus, ullamcorper. Dui id aliquet fusce turpis urna, a.
-            Dignissim urna semper id vulputate urna a. Ut nulla fermentum non mattis ultricies.
-            Consequat a, sed tristique sit dignissim varius amet massa. Nulla proin mauris et velit
-            aliquet donec porttitor.
-        </p>
-    </div>
-
-
-    <!-- <footer>
-                <p class="copyright">© 2022 Kelompok C-05</p>
-                <p class="mata-kuliah">Platform-based Programming
-                    Odd Semester 2022/2023</p>
-            </footer> -->
-</main>
-{% endblock content %}
+        </main>
+    {% endblock content %}
