@@ -63,7 +63,6 @@ function putPost(post){
 
         <div class="collapse mt-2 mx-4" id="reply-${post.pk}">
           <form method="POST" id="add-comment-${post.pk}">
-            {% csrf_token %}
             <textarea type="text" name="comment-body-${post.pk}" id="comment-body-${post.pk}" class="form-control" required></textarea>
             <button class="btn btn-dark" type="submit" style="margin-top: 10px"> add comment </button>
           </form>
@@ -78,7 +77,6 @@ function putPost(post){
   
   $.get(`./json/all-comments/${post.pk}`, function(comments){
     if(comments.length == 0){
-      console.log("does this work")
       $(`#comment-post-${post.pk}`).append(
         `<h6 id="nocomment-${post.pk}" class="pt-3" style="text-align: center">No comments yet..</h6>`
       )
@@ -126,7 +124,7 @@ function replyPost(post){
       $(`#add-comment-${post.pk}`).collapse('hide');
       
       // putting the reply
-      putReplies(data);
+      putReply(data);
       
       // redirect to comment
       $(`#comment-post-${post.pk}`).collapse('show');
@@ -136,18 +134,8 @@ function replyPost(post){
   })
 }
 
-function deletePost(post){
-  $(`#delete-post-${post.pk}`).click(function(){
-    $(`post-${post.pk}`).fadeOut();
-  })
-}
-
-function deleteReply(comment){
-  $('#onDelete').append()
-}
-
 function addPost(){
-  $.post("{% url 'questions:add_post' %}", {
+  $.post("add-post/", {
     title : $("#title").val(),
     body  : $("#body").val(),
   }).done(function(data){
@@ -164,23 +152,24 @@ function addPost(){
 }
 
 // <!-- ajax setup below is for csrf -->
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie != '') {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = jQuery.trim(cookies[i]);
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) == (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 $.ajaxSetup({ 
   beforeSend: function(xhr, settings) {
-    function getCookie(name) {
-      var cookieValue = null;
-      if (document.cookie && document.cookie != '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-          var cookie = jQuery.trim(cookies[i]);
-          // Does this cookie string begin with the name we want?
-          if (cookie.substring(0, name.length + 1) == (name + '=')) {
-            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-            break;
-          }
-        }
-      }
-      return cookieValue;
-    }
     if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
       // Only send the token to relative URLs i.e. locally.
       xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
