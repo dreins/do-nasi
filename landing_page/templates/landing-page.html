@@ -77,7 +77,7 @@
             }
 
             .about {
-                height: 100vh;
+                min-height: 100vh;
                 padding-top: 80px;
                 /* padding: 80px 300px; */
                 margin-top: 50px;
@@ -190,7 +190,6 @@
     {% endblock meta %}
     {% block content %}
         <main>
-            <nav class="nav-placement"></nav>
             <div class="welcome-section">
                 <img src="https://s41256.pcdn.co/wp-content/uploads/2022/05/220527-WorldHunger-AI_2-1024x538.jpg">
                 <div class="content-container">
@@ -206,9 +205,9 @@
                         <div class="button-section">
                             {% if user.is_authenticated %}
                                 {% if user.role == "Donatur" %}
-                                    <a class="btn welcome-btn" href="#" role="button">Mulai berdonasi</a>
+                                    <a class="btn welcome-btn" href="{% url 'page_overview:show_overview' %}" role="button">Mulai berdonasi</a>
                                 {% else %}
-                                    <a class="btn welcome-btn" href="#" role="button">Add donasi</a>
+                                    <a class="btn welcome-btn" href="{% url 'page_overview:show_overview' %}" role="button">Add donasi</a>
                                 {% endif %}
                                 <button type="button" onclick="load_data()" class="btn profile-btn" data-toggle="modal" data-target="#profileModal">Lihat profile saya</button>
                             {% else %}
@@ -245,7 +244,7 @@
 
                     <div class="donatur col-md-6 col-sm-12 col-xs-12">
                         <img src="{% static 'images/donatur.png' %}" style="width: 120px;">
-                        <h3>Donatur</h3>
+                        <h5>Donatur</h5>
                         <p class="description">Pengguna yang mendaftarkan dirinya sebagai donatur dapat menyumbangkan makanan/uang ke donasi yang dibuka oleh para penyalur.</p>
                     </div>
                 </div>
