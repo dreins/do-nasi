@@ -94,7 +94,7 @@
                 <li><a href="{% url 'landing_page:landing_page' %}">Home</a></li>
                 <li><a href=#about>About</a></li>
                 <li><a href="#">FAQ</a></li>
-                <li><a href="#">Article</a></li>
+                <li><a href="{% url 'article:article' %}">Article</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'landing_page:logout' %}">Logout</a></li>
                 {% endif %}
