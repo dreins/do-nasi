@@ -29,7 +29,7 @@ function putPost(post){
                     : '';
   let replyOption = (!user_username) 
                     ? '' 
-                    : `<a data-bs-toggle="collapse" href="#reply-${post.pk}" role="button" aria-expanded="false" aria-controls="collapseExample" class="mx-2">
+                    : `<a data-bs-toggle="collapse" href="#reply-${post.pk}" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <i class="icon bi bi-reply" style="color:#000"></i>
                       </a>`;
 

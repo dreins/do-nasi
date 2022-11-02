@@ -67,6 +67,9 @@ a:link, a:visited {
     padding-left: 80px;
     padding-right: 80px;
   }
+  .icon{
+    font-size: 22px;
+  }
 }
 @media only screen and (max-width: 993px){
   #formbutton-position{
