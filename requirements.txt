@@ -1,8 +1,12 @@
 asgiref==3.5.2
+bleach==5.0.1
 certifi==2022.6.15
 charset-normalizer==2.1.1
 dj-database-url==1.0.0
 Django==4.1
+django-ckeditor==6.5.1
+django-js-asset==2.0.0
+django-summernote==0.8.20.0
 gunicorn==20.1.0
 idna==3.3
 psycopg2-binary==2.9.3
@@ -11,6 +15,8 @@ requests==2.28.1
 six==1.16.0
 sqlparse==0.4.2
 typed-ast==1.5.4
+tzdata==2022.6
 urllib3==1.26.11
+webencodings==0.5.1
 whitenoise==6.2.0
 wrapt==1.14.1
