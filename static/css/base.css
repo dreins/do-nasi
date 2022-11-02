@@ -1,0 +1,57 @@
+body{ 
+    min-height: 100vh; 
+    margin:0; 
+    font-family: 'Poppins';
+    display:flex; 
+    flex-direction:column; 
+}
+
+header{ 
+    min-height:50px; 
+}
+
+footer{ 
+    min-height:50px; 
+}
+
+main{ 
+    flex:1; 
+}
+
+.navbar {
+    width: 100%; 
+    overflow: hidden;
+    box-shadow: 0px 1px 8px -1px rgba(0, 0, 0, 0.15);
+    background-color: white;
+    padding-left: 20px;
+}
+
+.nav-item:hover{
+    color: red;
+}
+
+.navbar-link {
+    color: white;
+}
+
+.navbar-link:hover {
+    color: #FFCD2E;
+}
+
+footer{
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid rgba(196, 196, 196, 0.45);
+    font-size: 14px;
+    height: 60px;
+
+}
+
+footer .copyright {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+footer .mata-kuliah {
+    margin-bottom: 10px;
+}
