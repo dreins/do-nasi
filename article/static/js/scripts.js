@@ -56,5 +56,39 @@
     $("#slug").val(slug.toLowerCase()+".html")
   })
 
+  $(document).on('submit', '#form-add',function(e){
 
+    $.ajax({
+      type:'POST',
+      url:"./add",
+      data:{
+          action:'post',
+          title:$('#title').val(),
+          body:$('#description').val(),
+          slug: $("#slug").val(),
+          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success:function(json){
+    
+    
+        document.getElementById("form-add").reset();
+          var slug = json.description;
+          var slugtitle = jQuery.trim(slug).split(" ").join("-")
+    
+          var test = json.slug;
+          var a = test.replaceAll(" ","-");
+          $(".container").prepend('<div class="card">'+
+            '<div class="card-body">' +
+              '<h5 class="card-title">'+json.title+'</h5>'+
+              '<p class="card-text">'+slugtitle+'</p>' +
+                  ' <a href="'+json.slug+'" class="read-more">Read more</a>' +
+              '</div>' +
+          '</div>'
+          )
+      },
+      error : function(xhr,errmsg,err) {
+      console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+    }
+    });
+    });
 

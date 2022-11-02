@@ -26,9 +26,11 @@ urlpatterns = [
     path('article/',include('article.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('editor/', include('django_summernote.urls')),
+    path('questions/', include('questions.urls')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# TODO: Implement Routings Here
+
+

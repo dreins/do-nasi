@@ -25,8 +25,7 @@
             main {
                 font-family: 'Poppins';
                 font-size: 20px;
-                font-weight: 400;
-                
+                font-weight: 400;  
             }
 
             .nav-placement {
@@ -47,7 +46,7 @@
                 top: 0;
                 opacity: 0.55;
                 width: 100%;
-                height: 100vh;
+                min-height: 100vh;
                 overflow: hidden;
                 object-fit: cover;
                 z-index: -1;
@@ -65,21 +64,22 @@
                 margin-top: calc(100vh - 190px);
             }
 
-            .welcome-btn {
+            .welcome-btn, .profile-btn, .logout-btn {
                 background: #FFCD2E;
                 border-radius: 9px;
                 box-shadow: 2px 3px 6px -1px #d8d8d8d2;
             }
 
-            .welcome-btn:hover {
+            .welcome-btn:hover, .profile-btn:hover, .logout-btn:hover{
                 border: 1px solid #000;
                 background-color: rgba(255, 205, 46, 0);
                 color: #000;
             }
 
             .about {
-                height: 100vh;
-                padding: 80px 300px;
+                min-height: 100vh;
+                padding-top: 80px;
+                /* padding: 80px 300px; */
                 margin-top: 50px;
                 
             }
@@ -87,7 +87,7 @@
             .about h3 {
                 text-align: center;
                 font-weight: 600;
-                margin-bottom: 10px;
+                margin-bottom: 15px;
                 font-size: 27px;
             }
 
@@ -98,10 +98,7 @@
             }
 
             .pengguna {
-                display: flex;
-                justify-content: space-between;
                 text-align: center;
-                
             }
 
             .pengguna h5 {
@@ -110,37 +107,89 @@
                 font-size: 18px;
             }
 
-            .pengguna p {
-                text-align: justify;
-                font-size: 14px;
-                max-width: 320px;
+
+            .description {
+                padding-left: 20px;
+                padding-right: 20px;
             }
 
-            .features h3 {
+            .profile-container {
+                padding: 20px 40px;
+                font-size: 18px;
+            }
+
+            #show, #hide {
+                cursor: pointer;
+                text-decoration: underline;
+                font-size: 12px;
+            }
+
+            #jumlah {
+                color: #fac61a;
+                font-weight: 500;
+            }
+
+            #jumlahDonasi {
                 text-align: center;
-                font-weight: 600;
-                margin-bottom: 10px;
-                font-size: 27px;
             }
-
-            .features{
-                height: 100vh;
-                padding: 70px 300px;
-            }
-
-            
-
-            
-            
         </style>
 
-    
+        <script>
+            function load_data() {
+                $.ajax({
+                    url: "{% url 'landing_page:get_json_penyalur' %}",
+                    dataType: 'json',
+                    data: '{{ list }}',
+                    success: function (data) {
+                        $( "#show" ).click(function() {
+                            show(data);
+                        });             
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error: ' + textStatus + ' - ' + errorThrown);
+                    }
+                });
+            }
+            function show(data) {
+                var donasi = '<ul>';
+                for (var i = 0; i < data.length; i++) {
+                    donasi += '<li>';
+                    donasi += data[i].fields.title;
+                    donasi += '</li>';
+                }
+                donasi += '</ul>';
+                document.getElementById('daftar-donasi').innerHTML = donasi; 
+                $("#show").hide();    
+                $("#hide").show();
+                $("#daftar-donasi").show();            
+            }
+
+            function hide() {
+                $("#show").show();    
+                $("#hide").hide(); 
+                $("#daftar-donasi").hide(); 
+            }
+
+            $(document).ready(function() {
+                $("#hide").hide();
+                $.ajax({
+                    url: "{% url 'landing_page:get_json_penyalur' %}",
+                    dataType: 'json',
+                    data: '{{ list }}',
+                    success: function (data) {    
+                        document.getElementById('jumlah').innerHTML = data.length;                
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error: ' + textStatus + ' - ' + errorThrown);
+                    }
+                });
+            });
+        </script>
     
     
     {% endblock meta %}
     {% block content %}
         <main>
-            <nav class="nav-placement"></nav>
             <div class="welcome-section">
                 <img src="https://s41256.pcdn.co/wp-content/uploads/2022/05/220527-WorldHunger-AI_2-1024x538.jpg">
                 <div class="content-container">
@@ -156,10 +205,11 @@
                         <div class="button-section">
                             {% if user.is_authenticated %}
                                 {% if user.role == "Donatur" %}
-                                    <a class="btn welcome-btn" href="#" role="button">Mulai berdonasi</a>
+                                    <a class="btn welcome-btn" href="{% url 'page_overview:show_overview' %}" role="button">Mulai berdonasi</a>
                                 {% else %}
-                                    <a class="btn welcome-btn" href="#" role="button">Add donasi</a>
+                                    <a class="btn welcome-btn" href="{% url 'page_overview:show_overview' %}" role="button">Add donasi</a>
                                 {% endif %}
+                                <button type="button" onclick="load_data()" class="btn profile-btn" data-toggle="modal" data-target="#profileModal">Lihat profile saya</button>
                             {% else %}
                                 <a class="btn welcome-btn" href="{% url 'landing_page:login' %}" role="button">Log in</a>
                                 <a class="btn welcome-btn" href="{% url 'landing_page:register' %}" role="button">Register</a>
@@ -171,37 +221,65 @@
                 </div>
             </div>
          
-            <div class="about" id="about">
+            <div class="container about" id="about">
                 <h3>The Story Behind do-nasi</h3>
-                <p>Permasalahan terkait kesehatan global menjadi salah satu topik yang dibahas dalam <a id="g20" href="https://www.oecd.org/g20/topics" target="_blank" style="color: #FFCD2E;">G20</a>. 
-                    The G20 Health Working Group (HWG) membuat beberapa agenda internasional untuk memperkuat sistem kesehatan
-                    global salah satunya adalah dengan cara mengurangi jumlah malnutrisi. 
-                    Do-nasi hadir sebagai sebuah aplikasi yang memberikan ruang untuk saling berbagi dan 
-                    menyalurkan makanan atau uang untuk masyarakat yang membutuhkan.
-                    Perancangan aplikasi ini ditujukan untuk membantu mengurangi angka kelaparan dan malnutrisi secara bersama-sama.
-                    Pengguna dapat 
-                    mendaftarkan diri sebagai pemberi donasi (donatur) ataupun penyalur donasi (sukarelawan).
-                </p>
-                <div class="pengguna">
-                    <div class="penyalur">
+                <div class="row">
+                    <p>Permasalahan terkait kesehatan global menjadi salah satu topik yang dibahas dalam <a id="g20" href="https://www.oecd.org/g20/topics" target="_blank" style="color: #FFCD2E;">G20</a>. 
+                        The G20 Health Working Group (HWG) membuat beberapa agenda internasional untuk memperkuat sistem kesehatan
+                        global salah satunya adalah dengan cara mengurangi jumlah malnutrisi. 
+                        Do-nasi hadir sebagai sebuah aplikasi yang memberikan ruang untuk saling berbagi dan 
+                        menyalurkan makanan atau uang untuk masyarakat yang membutuhkan.
+                        Perancangan aplikasi ini ditujukan untuk membantu mengurangi angka kelaparan dan malnutrisi secara bersama-sama.
+                        Pengguna dapat 
+                        mendaftarkan diri sebagai pemberi donasi (donatur) ataupun penyalur donasi (sukarelawan).
+                    </p>
+                </div>
+                <div class="row pengguna">
+                    <div class="penyalur col-md-6 col-sm-12 col-xs-12">
                         <img src="{% static 'images/penyalur.png' %}" style="width: 120px;">
                         <h5>Penyalur</h5>
-                        <p>Pengguna yang mendaftarkan dirinya sebagai penyalur dapat membuka donasi baru untuk kemudian disalurkan ke orang-orang yang membutuhkan.</p>
+                        <p class="description">Pengguna yang mendaftarkan dirinya sebagai penyalur dapat membuka donasi baru untuk kemudian disalurkan ke orang-orang yang membutuhkan.</p>
 
                     </div>
 
-                    <div class="donatur">
+                    <div class="donatur col-md-6 col-sm-12 col-xs-12">
                         <img src="{% static 'images/donatur.png' %}" style="width: 120px;">
                         <h5>Donatur</h5>
-                        <p>Pengguna yang mendaftarkan dirinya sebagai donatur dapat menyumbangkan makanan/uang ke donasi yang dibuka oleh para penyalur.</p>
+                        <p class="description">Pengguna yang mendaftarkan dirinya sebagai donatur dapat menyumbangkan makanan/uang ke donasi yang dibuka oleh para penyalur.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="features" id="features">
-                <h3>Our Features</h3>
 
-
+                <!-- Modal -->
+            <div class="modal fade" id="profileModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h5 class="modal-title w-100" id="staticBackdropLabel">Profil Saya</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="container profile-container">
+                            <div class="row">
+                                <h5 id="profile-role" style="margin-bottom:20px;color: #fac61a;text-align:center;">{{user.role}}</h5>
+                                <p>Nama: {{user.name}}</p>
+                                <p>Username: {{user.username}}</p>
+                                <p>Email: {{user.email}}</p>
+                                {% if user.role == "Penyalur" %}
+                                    <p id="jumlahDonasi">Kamu telah membuka <span id="jumlah"></span> donasi.
+                                        <span id="show" onclick="show()">show</span>
+                                        <span id="hide" onclick="hide()">hide</span>
+                                    </p>
+                                    
+                                    <div id="daftar-donasi"></div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'landing_page:logout' %}" class="btn logout-btn">Logout</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </main>
