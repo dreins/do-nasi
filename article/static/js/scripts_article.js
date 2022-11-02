@@ -82,16 +82,16 @@ $(document).ready(function () {
         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
       },
       
-      success: function (json) {
-        $('#exampleModal').modal('toggle'); 
+      success: function (json) { 
         document.getElementById("form-add").reset();
         $('#description').summernote('reset');
-        $("#slug").val("")
+        $("#slug").val("");
+        
 
         // var slug = json.description;
         // var slugtitle = jQuery.trim(slug).split(" ").join("-");
 
-        load()
+        load();
         // $(".container").prepend('<div class="card">' +
         //   '<div class="card-body">' +
         //   '<h5 class="card-title">' + json.title + '</h5>' +
