@@ -12,31 +12,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 
 
-# Landing page
 def landing_page(request):
 	return render(request, "landing-page.html")
-
-	
-
-# Register
-# def register(request):
-#     context = {}
-#     if request.method == "POST":
-#         form = FormRegister(request.POST)
-#         data = {}
-#         if form.is_valid():
-#             form.save()
-#             data['success'] = True
-#             return HttpResponse(json.dumps(data), content_type='application/json')
-#         else: 
-#             data['error'] = form.errors
-#             data['form'] = form
-#             data['success'] = False
-#             return HttpResponse(json.dumps(data), content_type='application/json')
-
-#     form = FormRegister()
-#     context = {'form':form}
-#     return render(request, 'register.html', context)
 
 @csrf_exempt
 def register(request):
