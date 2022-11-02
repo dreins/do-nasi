@@ -69,8 +69,8 @@
 
       {% if not request.user.is_authenticated %}
       <div class="jumbotron mt-5 p-3">
-        <a href="">Login</a> to post a new discussion<br>
-        <small>Don't have an account yet? <a href="">Register</a> now!</small>
+        <a href="{%url 'landing_page:login'%}" style="">Login</a> to post a new discussion<br>
+        <small>Don't have an account yet? <a href="{%url 'landing_page:register'%}" style="">Register</a> now!</small>
       </div>
       {% else %}
       <!-- Form for putting a post -->

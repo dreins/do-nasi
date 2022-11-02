@@ -1,12 +1,23 @@
-a:link {
+a:link, a:visited {
   text-decoration: none;
 }
-a:visited {
-  text-decoration: none;
+.icon{
+  font-size: 20px;
 }
+.icon-group{
+  text-align: right;
+}
+
+[data-bs-toggle="collapse"].collapsed .if-not-collapsed {
+  display: none;
+}
+[data-bs-toggle="collapse"]:not(.collapsed) .if-collapsed {
+  display: none;
+}
+
 .jumbotron{
   text-align: center;
-  background-color: rgba(217,217,217,0.75);
+  background-color: rgba(214, 214, 214, 0.407);
 }
 .header-section{
   height: calc(50vh - 50px);

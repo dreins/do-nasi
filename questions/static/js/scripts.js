@@ -29,8 +29,8 @@ function putPost(post){
                     : '';
   let replyOption = (!user_username) 
                     ? '' 
-                    : `<a data-bs-toggle="collapse" href="#reply-${post.pk}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <small>reply</small>
+                    : `<a data-bs-toggle="collapse" href="#reply-${post.pk}" role="button" aria-expanded="false" aria-controls="collapseExample" class="mx-2">
+                        <i class="icon bi bi-reply" style="color:#000"></i>
                       </a>`;
 
   $("#posts").prepend(
@@ -53,12 +53,13 @@ function putPost(post){
           <p class="card-text pt-2">${post.fields.body}</p>
         </div>
       
-        <div class="px-4">
-          <a data-bs-toggle="collapse" href="#comment-post-${post.pk}" role="button" aria-expanded="false">
-            <small>see all replies</small>
-          </a>
-
+        <div class="icon-group mb-2">
           ${replyOption}
+
+          <a data-bs-toggle="collapse" href="#comment-post-${post.pk}" role="button" aria-expanded="false" class="collapsed mx-5">
+            <i class="icon bi bi-eye if-collapsed" style="color:#000"></i>
+            <i class="icon bi bi-eye-slash if-not-collapsed" style="color:#000"></i>
+          </a>
         </div>
 
         <div class="collapse mt-2 mx-4" id="reply-${post.pk}">
