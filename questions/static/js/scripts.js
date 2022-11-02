@@ -108,7 +108,8 @@ function putReply(comment){
     `<div class="card-body mt-2 px-3 pt-3 border-top" id="comment-${comment.pk}">
       <div class="mx-4">
         ${deleteOption}
-        <small>${comment.fields.user.name} <small class="text-muted"><i>  —  ${comment.fields.user.role}</i></small></small>
+        <h6>${comment.fields.user.name} <small class="text-muted"><i>  —  ${comment.fields.user.role}</i></small></h6>
+        <small class="date-info text-muted">${comment.fields.date}</small>
         <p class="pt-2">${comment.fields.body}</p>
         </div>
     </div>`
