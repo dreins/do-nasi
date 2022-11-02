@@ -14,7 +14,9 @@ a:link, a:visited {
 [data-bs-toggle="collapse"]:not(.collapsed) .if-collapsed {
   display: none;
 }
-
+.card{
+  box-shadow: 8px 8px 20px rgba(218, 217, 217, 0.314);
+}
 .jumbotron{
   text-align: center;
   background-color: rgba(214, 214, 214, 0.407);
