@@ -3,6 +3,7 @@
 {% load static %}
 <title>Article do-nasi</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
@@ -11,50 +12,15 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="{% static 'js/jquery.serializejson.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href=" {% static '/css/style_article.css' %} ">
-
-<script>
-    $(document).on('submit', '#form-add',function(e){
-
-$.ajax({
-  type:'POST',
-  url:"{% url 'article:add-article' %}",
-  data:{
-      action:'post',
-      title:$('#title').val(),
-      body:$('#description').val(),
-      slug: $("#slug").val(),
-      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-  },
-  success:function(json){
+<script src="{% static 'js/scripts_article.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
 
 
-    document.getElementById("form-add").reset();
-      var slug = json.description;
-      var slugtitle = jQuery.trim(slug).split(" ").join("-")
-
-      var test = json.slug;
-      var a = test.replaceAll(" ","-");
-      $(".container").prepend('<div class="card">'+
-        '<div class="card-body">' +
-          '<h5 class="card-title">'+json.title+'</h5>'+
-          '<p class="card-text">'+slugtitle+'</p>' +
-              ' <a href="'+json.slug+'" class="read-more">Read more</a>' +
-          '</div>' +
-      '</div>'
-      )
-  },
-  error : function(xhr,errmsg,err) {
-  console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-}
-});
-});
-</script>
 {% endblock meta %}
 
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="{% static 'js/scripts_article.js' %}"></script>
 
 <div class="bg">
   <div class="image">
@@ -89,7 +55,7 @@ $.ajax({
 </div>
 
 
-<div class="container">
+<div class="container" id="container">
 
 
 </div>

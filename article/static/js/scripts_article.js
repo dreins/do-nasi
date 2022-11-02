@@ -1,4 +1,3 @@
-
 function convertToSlug(str) {
 
   //replace all special characters | symbols with a space
@@ -16,8 +15,8 @@ function convertToSlug(str) {
 
 function bodyField() {
   $('#description').summernote();
-  console.log("ok")
 }
+
 
 
 // $(document).ready(function() {
@@ -25,11 +24,10 @@ function bodyField() {
 // });
 function load() {
 
-  console.log("ok1")
   // FETCHING DATA FROM JSON FILE
   $.getJSON("./json/article",
     function (data) {
-      var task = '';
+      var article = '';
 
       // ITERATING THROUGH OBJECTS
       $.each(data, function (key, value) {
@@ -38,19 +36,19 @@ function load() {
         var shorttext = jQuery.trim(fulltext).substring(0, 450)
           .split(" ").join(" ") + "...";
 
-        task += '<div class="card">';
-        task += '<div class="card-body">';
-        task += '<h5 class="card-title">' + value.fields.title + '</h5>';
-        task += '<p class="card-text">' + shorttext + '</p>';
-        task += ' <a href="' + value.fields.slug + '" class="read-more">Read more</a>';
-        task += '</div>';
-        task += '</div>';
+        article += '<div class="card">';
+        article += '<div class="card-body">';
+        article += '<h5 class="card-title">' + value.fields.title + '</h5>';
+        article += '<p class="card-text">' + shorttext + '</p>';
+        article += ' <a href="' + value.fields.slug + '" class="read-more">Read more</a>';
+        article += '</div>';
+        article += '</div>';
 
 
       });
 
-      //INSERTING ROWS INTO TABLE 
-      $('.container').append(task);
+      //INSERTING CARD
+      document.getElementById('container').innerHTML = article;
 
     });
 }
@@ -66,47 +64,46 @@ function load() {
 
 $(document).ready(function () {
   load();
-  bodyField()
+  bodyField();
 
-  // $('#form-add').submit(function (e) {
-  //   e.preventDefault();
+  $('#form-add').submit(function (e) {
+    e.preventDefault();
 
-  //   console.log("ok2")
-  //   var data = JSON.stringify($("#form-add").serializeJSON())
-  //   // data = JSON.parse(data)
-  //   console.log("data", data)
-
-  //   $.ajax({
-  //     type: 'POST',
-  //     url: "./add-article/",
-  //     dataType: "json",
-  //     data: {
-  //       action: 'post',
-  //       title: $('#title').val(),
-  //       body: $('#description').val(),
-  //       slug: $("#slug").val(),
-  //       data: data,
-  //       // csrfmiddlewaretoken: '{{ csrf_token }}'
-  //       csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-  //     },
+  
+    $.ajax({
+      type: 'POST',
+      url: "add_article/",
+      dataType: "json",
+      data: {
+        action: 'post',
+        title: $('#title').val(),
+        body: $('#description').val(),
+        slug: $("#slug").val(),
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+      },
       
-  //     success: function (json) {
-  //       document.getElementById("form-add").reset();
-  //       var slug = json.description;
-  //       var slugtitle = jQuery.trim(slug).split(" ").join("-");
+      success: function (json) {
+        $('#exampleModal').modal('toggle'); 
+        document.getElementById("form-add").reset();
+        $('#description').summernote('reset');
+        $("#slug").val("")
 
-  //       $(".container").prepend('<div class="card">' +
-  //         '<div class="card-body">' +
-  //         '<h5 class="card-title">' + json.title + '</h5>' +
-  //         '<p class="card-text">' + slugtitle + '</p>' +
-  //         ' <a href="' + json.slug + '" class="read-more">Read more</a>' +
-  //         '</div>' +
-  //         '</div>'
-  //       )
-  //     },
-  //     error: function (xhr, errmsg, err) {
-  //       console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-  //     }
-  //   });
-  // });
+        // var slug = json.description;
+        // var slugtitle = jQuery.trim(slug).split(" ").join("-");
+
+        load()
+        // $(".container").prepend('<div class="card">' +
+        //   '<div class="card-body">' +
+        //   '<h5 class="card-title">' + json.title + '</h5>' +
+        //   '<p class="card-text">' + slugtitle + '</p>' +
+        //   ' <a href="' + json.slug + '" class="read-more">Read more</a>' +
+        //   '</div>' +
+        //   '</div>'
+        // )
+      },
+      error: function (xhr, errmsg, err) {
+        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+      }
+    });
+  });
 });
