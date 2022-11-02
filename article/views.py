@@ -9,6 +9,8 @@ import datetime
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+import json
+
 
 from article.models import Article, Comment
 def article(request):
@@ -31,8 +33,18 @@ def get_comments_json(request):
     comments = Comment.objects.all()
     return HttpResponse(serializers.serialize('json', comments))
 
+# def add_article(request):
+#     if request.method == "POST":
+#         data = json.loads(request.POST['data'])
 
-def add(request):
+#         new = Article(user=data["user"], date=data["date"], title=data["title"], body=data["body"], slug=data["slug"])
+#         new.save()
+
+#         return HttpResponse(serializers.serialize("json", [new]), content_type="application/json")
+
+#     return HttpResponse()
+
+def add_article(request):
     posts = Article.objects.all()
     response_data = {}
     if request.method == "POST":
@@ -47,21 +59,26 @@ def add(request):
         response_data['title'] = title_user
         response_data['body'] = body_user
         response_data['slug'] = slug_user
+
         Article.objects.create(
             user = username,
             date = date_user,
             title = title_user,
             body = body_user,
             slug = slug_user
-
         )
+
         return JsonResponse(response_data)
 
     return render(request, 'article.html', {'posts':posts})
 
 @login_required(login_url='../login/')
 def detail(request,slug):
-    posts = Article.objects.get(slug=slug)
+    # posts = Article.objects.get(slug=slug)
+    try:
+        posts = Article.objects.get(slug=slug)
+    except Comment.DoesNotExist:
+        posts = None
 
     if request.method == "POST":
         form = comment_form(request.POST)
