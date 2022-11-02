@@ -1,6 +1,4 @@
-from multiprocessing import context
-import this
-from turtle import position
+
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import HttpResponse, render
 from django.core import serializers

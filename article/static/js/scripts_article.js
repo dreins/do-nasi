@@ -71,42 +71,42 @@ $(document).ready(function () {
   // $('#form-add').submit(function (e) {
   //   e.preventDefault();
 
-    // console.log("ok2")
-    // var data = JSON.stringify($("#form-add").serializeJSON())
-    // // data = JSON.parse(data)
-    // console.log("data", data)
+  //   console.log("ok2")
+  //   var data = JSON.stringify($("#form-add").serializeJSON())
+  //   // data = JSON.parse(data)
+  //   console.log("data", data)
 
-    // $.ajax({
-    //   type: 'POST',
-    //   url: "/add-article/",
-    //   dataType: "json",
-    //   data: {
-    //     action: 'post',
-    //     title: $('#title').val(),
-    //     body: $('#description').val(),
-    //     slug: $("#slug").val(),
-    //     data: data,
-    //     // csrfmiddlewaretoken: '{{ csrf_token }}'
-    //     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-    //   },
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: "./add-article/",
+  //     dataType: "json",
+  //     data: {
+  //       action: 'post',
+  //       title: $('#title').val(),
+  //       body: $('#description').val(),
+  //       slug: $("#slug").val(),
+  //       data: data,
+  //       // csrfmiddlewaretoken: '{{ csrf_token }}'
+  //       csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+  //     },
       
-    //   success: function (json) {
-    //     document.getElementById("form-add").reset();
-    //     var slug = json.description;
-    //     var slugtitle = jQuery.trim(slug).split(" ").join("-");
+  //     success: function (json) {
+  //       document.getElementById("form-add").reset();
+  //       var slug = json.description;
+  //       var slugtitle = jQuery.trim(slug).split(" ").join("-");
 
-    //     $(".container").prepend('<div class="card">' +
-    //       '<div class="card-body">' +
-    //       '<h5 class="card-title">' + json.title + '</h5>' +
-    //       '<p class="card-text">' + slugtitle + '</p>' +
-    //       ' <a href="' + json.slug + '" class="read-more">Read more</a>' +
-    //       '</div>' +
-    //       '</div>'
-    //     )
-    //   },
-    //   error: function (xhr, errmsg, err) {
-    //     console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-    //   }
-    // });
+  //       $(".container").prepend('<div class="card">' +
+  //         '<div class="card-body">' +
+  //         '<h5 class="card-title">' + json.title + '</h5>' +
+  //         '<p class="card-text">' + slugtitle + '</p>' +
+  //         ' <a href="' + json.slug + '" class="read-more">Read more</a>' +
+  //         '</div>' +
+  //         '</div>'
+  //       )
+  //     },
+  //     error: function (xhr, errmsg, err) {
+  //       console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+  //     }
+  //   });
   // });
 });
