@@ -1,153 +1,58 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <link rel="icon" type="image/ico" href="{% static 'images/icon.ico' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block meta %}
+        {% endblock meta %}
+    </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-  <link rel="icon" type="image/ico" href="{% static 'images/icon.ico' %}">
-  {% block meta %}
-  {% endblock meta %}
+    <body>
+        <nav class="navbar navbar-expand-sm sticky-top" style="padding-top:3px;padding-bottom:3px;">
+            <div class="container-fluid">
+                <a id="logo-container" href="{% url 'landing_page:landing_page' %}"><img id="logo" src="{% static 'images/logo.png' %}" style="width: 100px;"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link navbar-link" href="{% url 'landing_page:landing_page' %}" style="padding-right: 30px; padding-left: 30px;">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-link" href=#about style="padding-right: 30px;padding-left: 30px;">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-link" href="{% url 'questions:show_questions'%}" style="padding-right: 30px;padding-left: 30px;">Q&A</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-link" href="{% url 'article:article'%}" style="padding-right: 30px;padding-left: 30px;">Article</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link navbar-link" href="{% url 'harapan_page:show_harapan'%}" style="padding-right: 30px;padding-left: 30px;">Harapan</a>
+                        </li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-  <style>
+        <main>
+        {% block content %}
+        {% endblock content %}
+        </main>
 
-        body{ 
-            min-height: 100vh; 
-            margin:0; 
-        }
-
-        header{ 
-            min-height:50px; 
-        }
-
-        footer{ 
-            min-height:50px; 
-        }
-
-        /* The article fills all the space between header & footer */
-        body{ 
-            display:flex; 
-            flex-direction:column; 
-        }
-
-        main{ 
-            flex:1; 
-        }
-
-    .navbar {
-        /* position: fixed; 
-        top: 0;  */
-        width: 100%; 
-        overflow: hidden;
-        box-shadow: 0px 1px 8px -1px rgba(0, 0, 0, 0.15);
-        background-color: white;
-        padding-left: 20px;
-    }
-
-    .nav-link {
-        color: black;
-    }
-
-    .nav-link:hover {
-        color: #FFCD2E;
-    }
-
-    body{
-        font-family: 'Poppins';
-    }
-
-    footer{
-        text-align: center;
-        width: 100%;
-        border-top: 1px solid rgba(196, 196, 196, 0.45);
-        font-size: 14px;
-        height: 60px;
-
-    }
-
-
-    footer .copyright {
-        margin-bottom: 0px;
-        margin-top: 10px;
-    }
-
-    footer .mata-kuliah {
-        margin-bottom: 10px;
-    }
-  </style>
-  
-  
-</head>
-
-
-
-<body>
-
-    <nav class="navbar navbar-expand-sm sticky-top" style="padding-top:3px;padding-bottom:3px;">
-        <div class="container-fluid">
-            <a id="logo-container" href="{% url 'landing_page:landing_page' %}"><img id="logo" src="{% static 'images/logo.png' %}" style="width: 100px;"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'landing_page:landing_page' %}" style="padding-right: 30px; padding-left: 30px;">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href=#about style="padding-right: 30px;padding-left: 30px;">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'questions:show_questions'%}" style="padding-right: 30px;padding-left: 30px;">FAQ </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'article:article'%}" style="padding-right: 30px;padding-left: 30px;">Article</a>
-                </li>
-            </ul>
-        </div>
-        </div>
-    </nav>
-
-    <!-- <nav class="navbar navbar-expand-sm sticky-top" style="padding-top:3px;padding-bottom:3px;">
-        <a id="logo-container" href="{% url 'landing_page:landing_page' %}"><img id="logo" src="{% static 'images/logo.png' %}" style="width: 100px;"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto" >
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'landing_page:landing_page' %}" style="padding-right: 30px; padding-left: 30px;">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href=#about style="padding-right: 30px;padding-left: 30px;">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'questions:show_questions'%}" style="padding-right: 30px;padding-left: 30px;">FAQ </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" style="padding-right: 30px;padding-left: 30px;">Article</a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
-
-    <main>
-    {% block content %}
-    
-    {% endblock content %}
-    </main>
-
-    <footer>
-        <p class="copyright">© 2022 Kelompok C-05</p>
-        <p class="mata-kuliah">Platform-based Programming
-            Odd Semester 2022/2023</p>
-    </footer>
-
-</body>
-
-
-
+        <footer>
+            <p class="copyright">© 2022 Kelompok C-05</p>
+            <p class="mata-kuliah">Platform-based Programming
+                Odd Semester 2022/2023</p>
+        </footer>
+    </body>
 </html>
