@@ -13,6 +13,7 @@ $(document).on('submit', '#form', function(e){
         success: function(response){
         var success = response['success']
         if (success){
+            $(".form-registrasi").trigger("reset");
             $(".alert-success").show();
         }
         else {
