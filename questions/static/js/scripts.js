@@ -97,19 +97,22 @@ function putReply(comment){
   // put reply
   let user_username = JSON.parse(document.getElementById('user_username').textContent);
   let deleteOption = (user_username === comment.fields.user.username)
-                    ?`<a id="delete-comment-${comment.pk}" href="delete-comment/${comment.pk}")">
-                        <small>delete comment</small>
-                      </a>` 
+                    ?`<h5 class="bi bi-three-dots-vertical float-right" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></h5>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li>
+                          <a class="dropdown-item" id="delete-comment-${comment.pk}" href="delete-comment/${comment.pk}")">
+                            Delete comment
+                          </a>
+                        </li>
+                      </ul>` 
                     : '';
   $(`#comment-post-${comment.fields.post}`).append(
-    `<div class="d-flex card-body mt-2 px-3 pt-3 border-top" id="comment-${comment.pk}">
+    `<div class="card-body mt-2 px-3 pt-3 border-top" id="comment-${comment.pk}">
       <div class="mx-4">
+        ${deleteOption}
         <small>${comment.fields.user.name} <small class="text-muted"><i>  —  ${comment.fields.user.role}</i></small></small>
         <p class="pt-2">${comment.fields.body}</p>
-      </div>
-    </div>
-    <div class="mx-4 px-3">
-      ${deleteOption}
+        </div>
     </div>`
   );
 }
