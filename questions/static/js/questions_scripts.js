@@ -21,7 +21,7 @@ function putPost(post){
   // put post
   let user_username = JSON.parse(document.getElementById('user_username').textContent);
   let deleteOption = (user_username === post.fields.user.username)
-                    ?`<h5 class="bi bi-three-dots-vertical float-right" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></h5>
+                    ?`<h5 class="bi bi-three-dots-vertical" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="float:right"></h5>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <li>
                         <a class="dropdown-item" id="delete-post-${post.pk}" href="delete-post/${post.pk}">
@@ -95,7 +95,7 @@ function putReply(comment){
   // put reply
   let user_username = JSON.parse(document.getElementById('user_username').textContent);
   let deleteOption = (user_username === comment.fields.user.username)
-                    ?`<h5 class="bi bi-three-dots-vertical float-right" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></h5>
+                    ?`<h5 class="bi bi-three-dots-vertical" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="float:right"></h5>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <li>
                           <a class="dropdown-item" id="delete-comment-${comment.pk}" href="delete-comment/${comment.pk}")">
