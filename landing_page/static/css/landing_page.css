@@ -33,7 +33,7 @@
     top: 0;
     opacity: 0.55;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     overflow: hidden;
     object-fit: cover;
     z-index: -1;
@@ -51,7 +51,7 @@
 }
 
 .about {
-    min-height: 100vh;
+    min-height: 50vh;
     padding-top: 80px;
     margin-top: 50px;
 }
@@ -69,7 +69,7 @@
     text-align: justify;
 }
 
-#g20, #register-text {
+#g20, #daftar, #qna-link {
     color: #FFCD2E;
 }
 
@@ -227,5 +227,49 @@
 .label {
     margin-bottom: 5px;
     margin-top: 10px;
+}
+
+#refer-qna {
+    text-align: center;
+    padding: 10px 30px;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 570px) {
+    .welcome-section{ 
+        height: 50vh;
+    }
+
+    .about {
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 0;
+        margin-top: 88px;
+    }
+
+    .welcome-heading {
+        margin-top: 50vw;
+    }
+
+    .welcome-section img {
+        height: 50vh;
+    }
+
+    .welcome-heading h1{
+        font-size: 27px;
+        padding: 0 10px;
+    }
+
+    .about h3 {
+        font-size: 23px;
+    }
+
+    .about p {
+        font-size: 14px;
+        padding: 0 20px;
+    }
+    
 }
 
