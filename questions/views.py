@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 from .models import FAQ, Post, Comment
 
 # Create your views here.
@@ -88,7 +89,8 @@ def add_post(request):
                 "date" : new_post.date.strftime("%B %d, %Y at %H:%M %Z")
             }
         })
-            
+   
+@csrf_exempt         
 def add_comment(request, id):
     if request.method == 'POST':
         # retrieving data
