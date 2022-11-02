@@ -1,4 +1,3 @@
-
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import HttpResponse, render
 from django.core import serializers
