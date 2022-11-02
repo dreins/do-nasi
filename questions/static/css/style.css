@@ -1,12 +1,25 @@
-a:link {
+a:link, a:visited {
   text-decoration: none;
 }
-a:visited {
-  text-decoration: none;
+.icon{
+  font-size: 20px;
+}
+.icon-group{
+  text-align: right;
+}
+
+[data-bs-toggle="collapse"].collapsed .if-not-collapsed {
+  display: none;
+}
+[data-bs-toggle="collapse"]:not(.collapsed) .if-collapsed {
+  display: none;
+}
+.card{
+  box-shadow: 8px 8px 20px rgba(218, 217, 217, 0.314);
 }
 .jumbotron{
   text-align: center;
-  background-color: rgba(217,217,217,0.75);
+  background-color: rgba(214, 214, 214, 0.407);
 }
 .header-section{
   height: calc(50vh - 50px);
@@ -55,6 +68,9 @@ a:visited {
   .container{
     padding-left: 80px;
     padding-right: 80px;
+  }
+  .icon{
+    font-size: 22px;
   }
 }
 @media only screen and (max-width: 993px){
