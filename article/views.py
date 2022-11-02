@@ -23,24 +23,33 @@ def article(request):
 
 
 def get_article_json(request):
+
+    data = []
     article = Article.objects.all()
-    return HttpResponse(serializers.serialize('json', article))
+    
+    for item in article:
+        data.append({
+            "pk" : item.pk,
+            "fields" : {
+                "user" : { 
+                        "username" : item.user.username,
+                        "name"     : item.user.name,
+                        "role"     : item.user.role
+                        },
+               
+                "date" : item.date,
+                "title" : item.title,
+                "body" : item.body,
+                "slug":item.slug,
+                
+            }
+        })
+    return JsonResponse(data, safe=False)
 
 def get_comments_json(request):
-    article = Article.objects.all()
     comments = Comment.objects.all()
     return HttpResponse(serializers.serialize('json', comments))
 
-# def add_article(request):
-#     if request.method == "POST":
-#         data = json.loads(request.POST['data'])
-
-#         new = Article(user=data["user"], date=data["date"], title=data["title"], body=data["body"], slug=data["slug"])
-#         new.save()
-
-#         return HttpResponse(serializers.serialize("json", [new]), content_type="application/json")
-
-#     return HttpResponse()
 
 def add_article(request):
     posts = Article.objects.all()
@@ -52,31 +61,33 @@ def add_article(request):
         body_user = request.POST.get('body')
         slug_user = request.POST.get('slug')
 
-        response_data['user'] = username
-        response_data['date'] = date_user
-        response_data['title'] = title_user
-        response_data['body'] = body_user
-        response_data['slug'] = slug_user
-
-        Article.objects.create(
-            user = username,
-            date = date_user,
-            title = title_user,
-            body = body_user,
-            slug = slug_user
-        )
-
-        return JsonResponse(response_data)
+        new_article = Article(user=username, date=date_user, title=title_user,body=body_user,slug=slug_user)
+        new_article.save()
+        return JsonResponse({
+            "pk" : new_article.pk,
+            "fields" : {
+                "user" : { 
+                        "username" : new_article.user.username,
+                        "name"     : new_article.user.name,
+                        "role"     : new_article.user.role
+                        },
+               
+                "date" : new_article.date,
+                "title" : new_article.title,
+                "body" : new_article.body,
+                "slug":new_article.slug,
+                
+            }
+        })
 
     return render(request, 'article.html', {'posts':posts})
 
 @login_required(login_url='../login/')
 def detail(request,slug):
     # posts = Article.objects.get(slug=slug)
-    try:
-        posts = Article.objects.get(slug=slug)
-    except Comment.DoesNotExist:
-        posts = None
+    
+    posts = Article.objects.get(slug=slug)
+
 
     if request.method == "POST":
         form = comment_form(request.POST)
