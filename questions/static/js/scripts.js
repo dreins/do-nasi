@@ -21,11 +21,14 @@ function putPost(post){
   // put post
   let user_username = JSON.parse(document.getElementById('user_username').textContent);
   let deleteOption = (user_username === post.fields.user.username)
-                    ?`<li>
+                    ?`<h5 class="bi bi-three-dots-vertical float-right" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></h5>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li>
                         <a class="dropdown-item" id="delete-post-${post.pk}" href="delete-post/${post.pk}">
                           Delete Post
                         </a>
-                      </li>` 
+                      </li>
+                    </ul>` 
                     : '';
   let replyOption = (!user_username) 
                     ? '' 
@@ -38,13 +41,8 @@ function putPost(post){
       <div id="post-${post.pk}">
         <div class="card-body px-4 pt-3 pb-3">
           <div>
-            <h5 class="bi bi-three-dots-vertical float-right" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></h5>
+            ${deleteOption}
             <h6>${post.fields.user.name} <small class="text-muted"><i>  —  ${post.fields.user.role}</i></small></h6>
-        
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Copy to link</a></li>
-              ${deleteOption}
-            </ul>
           </div>
           <h3 class="card-title pt-2">
             ${post.fields.title}<br>
