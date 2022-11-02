@@ -1,0 +1,231 @@
+.main-content {
+    font-family: 'Poppins';
+}
+
+.btn {
+    background: #FFCD2E;
+    border-radius: 9px;
+    box-shadow: 2px 3px 6px -1px #d8d8d8d2;
+}
+
+.btn:hover {
+    border: 1px solid #000;
+    background-color: rgba(255, 205, 46, 0);
+    color: #000;
+}
+
+/* landing page */
+.landing-page {
+    font-size: 20px;
+    font-weight: 400;  
+}
+
+.welcome-section{
+    height: calc(100vh - 50px);
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.welcome-section img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.55;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.welcome-heading{
+    margin-top: calc(100vh - 190px);
+}
+
+.welcome-heading h1{
+    color: #000000;
+    font-weight: 700;
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.about {
+    min-height: 100vh;
+    padding-top: 80px;
+    margin-top: 50px;
+}
+
+.about h3 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 27px;
+}
+
+.about p {
+    margin-bottom: 40px;
+    font-size: 15px;
+    text-align: justify;
+}
+
+#g20, #register-text {
+    color: #FFCD2E;
+}
+
+.pengguna {
+    text-align: center;
+}
+
+.pengguna h5 {
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.img-role {
+    width: 120px;
+}
+
+.description {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.profile-container {
+    padding: 20px 40px;
+    font-size: 18px;
+}
+
+#profile-role {
+    margin-bottom:20px;
+    color: #fac61a;
+    text-align:center;
+}
+
+#show, #hide {
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 12px;
+}
+
+#jumlah {
+    color: #fac61a;
+    font-weight: 500;
+}
+
+#jumlahDonasi {
+    text-align: center;
+}
+
+/* login */
+.login-container {
+    padding-top: 50px;
+    width: 100vw;
+    min-width: 400px;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container h1 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 27px;
+}
+
+.registrasi {
+    text-align: center;
+    padding: 40px;
+    width: 40vw;
+    min-width: 400px;
+
+}
+
+.login-row{
+    text-align: left;
+}
+
+.input{
+    height: 35px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.label-login {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+#register-text{
+    font-size: 13px;
+    text-align: center;
+}
+
+/* register */
+.register-container {
+    padding-top: 40px;
+    width: 100vw;
+    min-width: 400px;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+}
+
+.register-container h1 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 27px;
+}
+
+.registrasi {
+    text-align: center;
+    padding: 40px;
+    width: 40vw;
+    min-width: 400px;
+
+}
+
+.field{
+    text-align: left;
+}
+
+.radio-role {
+    display: flex;
+    justify-content: left;
+    column-gap: 20px;
+}
+
+#register-text{
+    font-size: 13px;
+    text-align: center;
+}
+
+.form-check-input:checked{
+    color: #FFCD2E;
+    border-color: #FFCD2E;
+    background-color: #FFCD2E;
+}
+
+.label, #donatur, #penyalur {
+    font-size: 15px;
+}
+
+.input{
+    height: 35px;
+    font-size: 15px;
+}
+
+.field p {
+    margin-bottom: 0px;
+}
+
+.label {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
