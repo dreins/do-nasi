@@ -11,5 +11,5 @@ class HarapanDonatur(models.Model):
     )
     username = models.CharField(max_length=50, blank = True)
     email = models.CharField(max_length=50, blank = True)
-    created_at = models.DateField(auto_now=True)
+    created_at = models.DateTimeField(auto_now=True)
     text = models.TextField()

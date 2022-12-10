@@ -33,7 +33,7 @@ from django.http import JsonResponse, HttpResponse
 
 def show_harapan(request):
     if request.user.is_authenticated:
-        data_harapan = HarapanDonatur.objects.all()
+        data_harapan = HarapanDonatur.objects.all().order_by('-id')
         context = {
             'data_harapan': data_harapan,
         }
@@ -50,7 +50,7 @@ def harapan_page(request):
         text = request.POST.get('text')
         HarapanDonatur.objects.create(
            user=user, text=text, username=user, email = user.get_email())
-        # HarapanDonatur.objects.all().delete()
+        HarapanDonatur.objects.all().delete()
         return JsonResponse({'message': 'Harapan Created!', 'error': False})
 
 
@@ -65,7 +65,7 @@ def show_harapan_json(request):
 
 @login_required(login_url='/login/')
 @csrf_exempt
-def delete_ajax(request, key):
+def delete_harapan(request, key):
     if request.method == 'POST':
         mytask = get_object_or_404(HarapanDonatur, user = request.user, pk = key)
         mytask.delete()
